@@ -4,10 +4,10 @@ import { Router } from "express";
 import passport from "passport";
 
 import {
-    getUserListController,
-    createUserController,
-    deleteUserByIdController,
-    updateUserByIdController,
+  getUserListController,
+  createUserController,
+  deleteUserByIdController,
+  updateUserByIdController,
 } from "../controllers/users";
 import logInWithCredentials from "../utils/generateToken";
 

@@ -1,4 +1,6 @@
-// product router here
+
+// food router here
+
 
 import { Router } from "express";
 
@@ -9,12 +11,13 @@ import {
     updateFoodByIdController,
 } from "../controllers/food";
 
-const productRouter = Router();
+const foodRouter = Router();
 
-// Call Express Methods for Product Collection by productRouter
-productRouter.get("/", getProductListController);
-productRouter.post("/", createProductController);
-productRouter.delete("/:id", deleteProductByIdController);
-productRouter.put("/:id", updateProductByIdController);
+// Call Express Methods for food Collection by foodRouter
+foodRouter.get("/", getFoodListController);
+foodRouter.post("/", createFoodController);
+foodRouter.delete("/:id", deleteFoodByIdController);
+foodRouter.put("/:id", updateFoodByIdController);
 
-export default productRouter;
+export default foodRouter;
+
