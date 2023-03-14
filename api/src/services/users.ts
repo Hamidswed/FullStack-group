@@ -3,6 +3,7 @@ import User, { UserDocument } from "../models/User";
 const createUser = async (user: UserDocument): Promise<UserDocument> => {
   return user.save();
 };
+
 //for Admin
 const getUserList = async (): Promise<UserDocument[]> => {
   return User.find();
