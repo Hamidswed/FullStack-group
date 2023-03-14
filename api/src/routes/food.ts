@@ -1,4 +1,6 @@
+
 // food router here
+
 
 import { Router } from "express";
 
@@ -18,3 +20,4 @@ foodRouter.delete("/:id", deleteFoodByIdController);
 foodRouter.put("/:id", updateFoodByIdController);
 
 export default foodRouter;
+
