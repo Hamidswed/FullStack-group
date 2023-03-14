@@ -8,8 +8,8 @@ import {
   createUserController,
   deleteUserByIdController,
   updateUserByIdController,
+  logInWithPassword,
 } from "../controllers/users";
-import logInWithCredentials from "../utils/generateToken";
 
 const userRouter = Router();
 
@@ -17,7 +17,11 @@ const userRouter = Router();
 userRouter.get("/", getUserListController);
 userRouter.post("/", createUserController);
 userRouter.delete("/:id", deleteUserByIdController);
-userRouter.put("/:id",  passport.authenticate("jwt", { session: false }), updateUserByIdController);
-userRouter.post("/logIn", logInWithCredentials);
+userRouter.put(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  updateUserByIdController
+);
+userRouter.post("/logIn", logInWithPassword);
 
 export default userRouter;
