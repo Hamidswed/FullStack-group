@@ -9,6 +9,7 @@ export type CommentDocument = Document & {
   message: string;
   date: Date;
   rate: number;
+  isConfirmed: boolean;
 };
 
 const CommentSchema = new mongoose.Schema({
@@ -25,8 +26,8 @@ const CommentSchema = new mongoose.Schema({
     required: true,
   },
   message: {
-    type: Boolean,
-    default: true,
+    type: String,
+    required: true,
   },
   date: {
     type: Date,
@@ -36,6 +37,10 @@ const CommentSchema = new mongoose.Schema({
     type: Number,
     default: 5,
   },
+  isConfirmed: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-export default mongoose.model<CommentDocument>('Comment', CommentSchema)
+export default mongoose.model<CommentDocument>("Comment", CommentSchema);

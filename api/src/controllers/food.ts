@@ -15,14 +15,24 @@ export const getFoodListController = async (req: Request, res: Response) => {
   }
 };
 
+export const getFoodByIdController = async (req: Request, res: Response) => {
+  try {
+    const foundFood = await FoodServices.getFoodById(req.params.id);
+    res.json(foundFood);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //2: Post Controller
 export const createFoodController = async (req: Request, res: Response) => {
   try {
     // We'll get food here from FrontEnd | Client
+    const { title, description, image } = req.body;
     const newFoodItem = new Food({
-      name: req.body.title,
-      quantity: req.body.description,
-      image: req.body.image
+      title: title,
+      description: description,
+      image: image,
     });
 
     // New food item save in DB via services
@@ -36,14 +46,9 @@ export const createFoodController = async (req: Request, res: Response) => {
 };
 
 //3: Delete Controller
-export const deleteFoodByIdController = async (
-  req: Request,
-  res: Response
-) => {
+export const deleteFoodByIdController = async (req: Request, res: Response) => {
   try {
-    const deleteFoodItem = await FoodServices.deleteFoodById(
-      req.params.id
-    );
+    const deleteFoodItem = await FoodServices.deleteFoodById(req.params.id);
     res.json(deleteFoodItem);
   } catch (error) {
     console.log(error);
@@ -51,10 +56,7 @@ export const deleteFoodByIdController = async (
 };
 
 //4: Update Controller
-export const updateFoodByIdController = async (
-  req: Request,
-  res: Response
-) => {
+export const updateFoodByIdController = async (req: Request, res: Response) => {
   try {
     const updateFoodItem = await FoodServices.updateFoodById(
       req.params.id,
