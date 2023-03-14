@@ -18,8 +18,11 @@ const getUserById = async (userId: string): Promise<UserDocument | null> => {
   return foundUser;
 };
 
-const findUserByEmail = async (email: string): Promise<UserDocument | null> => {
-  const foundUser = await User.findOne({ email: email });
+const findUserByEmail = async (
+  payload: Partial<UserDocument>
+): Promise<UserDocument | null> => {
+  const userEmail = payload.email;
+  const foundUser = await User.findOne({ email: userEmail });
   return foundUser;
 };
 
