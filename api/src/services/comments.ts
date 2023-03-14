@@ -6,7 +6,7 @@ const createComment = async (
   return comment.save();
 };
 
-const getCommentList = async (
+const getCommentsByUserId = async (
   userIdRequest: string
 ): Promise<CommentDocument[]> => {
   return Comment.find({ userId: userIdRequest }).populate("userId");
@@ -14,5 +14,5 @@ const getCommentList = async (
 
 export default {
   createComment,
-  getCommentList,
+  getCommentsByUserId,
 };

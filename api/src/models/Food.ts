@@ -6,6 +6,7 @@ export type FoodDocument = Document & {
   image: string;
   status: boolean;
   DOB: Date;
+  rate: number;
 };
 
 const FoodSchema = new mongoose.Schema({
@@ -28,6 +29,10 @@ const FoodSchema = new mongoose.Schema({
   DOB: {
     type: Date,
     default: Date.now(),
+  },
+  rate: {
+    type: Number,
+    default: 5,
   },
 });
 

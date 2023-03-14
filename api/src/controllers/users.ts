@@ -4,6 +4,8 @@ import { Request, Response } from "express";
 
 import User from "../models/User";
 import UserServices from "../services/users";
+import bcrypt from "bcrypt";
+import generateToken from "../utils/generateToken";
 
 //1: Get (User) Controller
 export const getUserListController = async (req: Request, res: Response) => {
@@ -15,36 +17,72 @@ export const getUserListController = async (req: Request, res: Response) => {
   }
 };
 
+export const getUserByIdController = async (req: Request, res: Response) => {
+  try {
+    const foundUser = await UserServices.getUserById(req.params.id);
+    res.json(foundUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //2: Post (User) Controller
 export const createUserController = async (req: Request, res: Response) => {
   try {
     // We'll get user here from FrontEnd | Client
     // User function | Collection import from Model
+    const { firstName, lastName, email, password } = req.body;
+    //hash password
+    const saltRounds = await bcrypt.genSalt(10); //complexity of the password
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    console.log(hashedPassword);
     const newUser = new User({
-      fullName: req.body.fullName,
-      email: req.body.email,
-      password: req.body.password
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: hashedPassword,
     });
 
     // New user will save in DB via services and that user will return as well
     const user = await UserServices.createUser(newUser);
 
     // Response back to Frontend
-    res.json(user);
+    if (user !== "available") res.json(user) && res.status(200);
+    else res.json({ message: "You have already registerd with this email!" });
   } catch (error) {
     console.log(error);
   }
 };
 
-//3: Delete Controller
-export const deleteUserByIdController = async (
-  req: Request,
-  res: Response
-) => {
+export const logInWithPassword = async (req: Request, res: Response) => {
   try {
-    const deleteUser = await UserServices.deleteUserById(
-      req.params.id
-    );
+    // get user information from DB and make token (with jsonwebtoken packages)
+    const userData = await UserServices.findUserByEmail(req.body.email);
+    if (!userData) {
+      res.json({
+        message: "invalid",
+      });
+      return;
+    }
+    //compare password form login form and hashed password from DB
+    const passwordFromForm = req.body.password;
+    const passwordFromDB = userData.password;
+    const match = await bcrypt.compare(passwordFromForm, passwordFromDB);
+    if (!match) {
+      res.json({ message: "wrong password!" });
+      return;
+    }
+
+    const token = generateToken(userData._id, req.body.email);
+    res.json({ userData, token });
+  } catch (error) {
+    console.log(error);
+  }
+};
+//3: Delete Controller
+export const deleteUserByIdController = async (req: Request, res: Response) => {
+  try {
+    const deleteUser = await UserServices.deleteUserById(req.params.id);
     res.json(deleteUser);
   } catch (error) {
     console.log(error);
@@ -52,10 +90,7 @@ export const deleteUserByIdController = async (
 };
 
 //4: Update Controller
-export const updateUserByIdController = async (
-  req: Request,
-  res: Response
-) => {
+export const updateUserByIdController = async (req: Request, res: Response) => {
   try {
     const updateUser = await UserServices.updateUserById(
       req.params.id,
