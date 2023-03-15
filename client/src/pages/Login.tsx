@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import React from "react";
-import GoogleLogIn from "../users/GoogleLogIn";
-import LoginForm from "../users/loginForm/LoginForm";
+import GoogleLogIn from "../components/users/GoogleLogIn";
+import LoginForm from "../components/users/loginForm/LoginForm";
 
 function Login() {
   return (
