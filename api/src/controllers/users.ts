@@ -105,30 +105,17 @@ export const updateUserByIdController = async (req: Request, res: Response) => {
   }
 };
 //google part
-export const googleAuthenticateController = async (
-  request: Request,
-  response: Response
-) => {
+export const googleAuthenticate = async (req: Request, res: Response) => {
   try {
-    //access data from passport:done(null,user)
-    console.log(request, "request");
-    const userData = request.user as UserDocument;
-
+    // access the data from passport :done (null, user)
+    console.log(req, "request");
+    const userData = req.user as UserDocument;
     if (!userData) {
-      response.json({ message: "Can't find user with this email" });
+      res.json({ message: "Can't find user with the email!" });
       return;
     }
-    const token = jwt.sign(
-      {
-        email: request.body.email,
-        firstName: userData.firstName,
-      },
-      JWT_SECRET,
-      {
-        expiresIn: "1h",
-      }
-    );
-    response.json({ token, userData });
+    const token = generateToken(req.body.email, userData.firstName);
+    res.json({ token, userData });
   } catch (error) {
     console.log(error);
   }
