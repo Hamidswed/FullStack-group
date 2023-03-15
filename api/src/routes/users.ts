@@ -11,6 +11,7 @@ import {
   updateUserByIdController,
   logInWithPassword,
   getUserByIdController,
+  googleAuthenticate,
 } from "../controllers/users";
 
 const userRouter = Router();
@@ -29,6 +30,11 @@ userRouter.put(
   "/:id",
   passport.authenticate("jwt", { session: false }),
   updateUserByIdController
+);
+userRouter.post(
+  "/googleLogIn",
+  passport.authenticate("google-id-token", { session: false }),
+  googleAuthenticate
 );
 userRouter.post("/logIn", logInWithPassword);
 
