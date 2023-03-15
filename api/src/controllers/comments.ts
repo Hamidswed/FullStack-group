@@ -6,11 +6,23 @@ import Comment from "../models/Comment";
 import commentServices from "../services/comments";
 
 //1: Get Controller
-export const getCommentListController = async (req: Request, res: Response) => {
+export const getCommentsByUserIdController = async (
+  req: Request,
+  res: Response
+) => {
   try {
     const commentList = await commentServices.getCommentsByUserId(
       req.params.id
     );
+    res.json(commentList);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAllCommentsController = async (req: Request, res: Response) => {
+  try {
+    const commentList = await commentServices.getAllComments();
     res.json(commentList);
   } catch (error) {
     console.log(error);

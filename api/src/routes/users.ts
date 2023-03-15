@@ -2,6 +2,7 @@
 
 import { Router } from "express";
 import passport from "passport";
+import AdminCheck from "../middlewares/adminCheck";
 
 import {
   getUserListController,
@@ -15,7 +16,12 @@ import {
 const userRouter = Router();
 
 // Call Express Methods for User Collection by userRouter
-userRouter.get("/", getUserListController);
+userRouter.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  AdminCheck,
+  getUserListController
+);
 userRouter.get("/:id", getUserByIdController);
 userRouter.post("/", createUserController);
 userRouter.delete("/:id", deleteUserByIdController);
