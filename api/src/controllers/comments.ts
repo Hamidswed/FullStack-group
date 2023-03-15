@@ -40,33 +40,17 @@ export const createCommentController = async (req: Request, res: Response) => {
   }
 };
 
-//3: Delete Controller
-// export const deleteCommentByIdController = async (
-//   req: Request,
-//   res: Response
-// ) => {
-//   try {
-//     const deleteComment = await commentServices.deleteCommentById(
-//       req.params.commentId
-//     );
-//     res.json(deleteComment);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-//4: Update Controller
-// export const updateCommentByIdController = async (
-//   req: Request,
-//   res: Response
-// ) => {
-//   try {
-//     const updateComment = await commentServices.updateCommentById(
-//       req.params.commentId,
-//       req.body.commentsList
-//     );
-//     res.json(updateComment);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+// 3: Delete Controller
+export const deleteCommentByIdController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const deleteComment = await commentServices.deleteCommentById(
+      req.params.commentId
+    );
+    res.json(deleteComment);
+  } catch (error) {
+    console.log(error);
+  }
+};
