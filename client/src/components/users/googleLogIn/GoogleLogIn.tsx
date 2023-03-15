@@ -9,7 +9,7 @@ function GoogleLogIn() {
       <Box style={{ width: "400px", marginInline: "auto" }}>
         <GoogleLogin
           onSuccess={async (credentialResponse) => {
-            console.log(credentialResponse);
+            console.log(credentialResponse, "credentialResponse");
             const url = "http://localhost:8000/users/googleLogIn";
             //send credential
             const credential = credentialResponse.credential;
