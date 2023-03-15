@@ -10,7 +10,7 @@ import {
   updateUserByIdController,
   logInWithPassword,
   getUserByIdController,
-  googleAuthenticateController,
+  googleAuthenticate,
 } from "../controllers/users";
 
 const userRouter = Router();
@@ -28,7 +28,7 @@ userRouter.put(
 userRouter.post(
   "/googleLogIn",
   passport.authenticate("google-id-token", { session: false }),
-  googleAuthenticateController
+  googleAuthenticate
 );
 userRouter.post("/logIn", logInWithPassword);
 
