@@ -5,6 +5,11 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 import { Form, Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/store";
+import { userLogin } from "../../../redux/thunk/userLogin";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // Type Declaration
 export type InitialTypes = {
@@ -13,6 +18,10 @@ export type InitialTypes = {
 };
 
 const LoginForm = () => {
+  const isLogin = useSelector((state: RootState) => state.user.isLogin);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   // Initial Values
   const initialValues: InitialTypes = {
     email: "",
@@ -21,7 +30,8 @@ const LoginForm = () => {
 
   // Function Call on Submit
   const submitHandler = (values: InitialTypes) => {
-    console.log(values);
+    dispatch(userLogin(values));
+    if (isLogin && token) navigate("/user");
   };
 
   return (

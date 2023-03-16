@@ -7,6 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useSelector } from 'react-redux';
+import { RootState } from "../../../redux/store";
 
 // function createData(
 //   Name: string,
@@ -27,8 +29,8 @@ import Paper from "@mui/material/Paper";
 // ];
 
 const UserInformation = () => {
+const user = useSelector((state:RootState)=>state.user.user)
 
-  
   return (
     <div>
       <h1>My Account's Information</h1>
@@ -51,7 +53,7 @@ const UserInformation = () => {
               <TableCell component="th" scope="row">
                 {"Full Name"}
               </TableCell>
-              <TableCell>{"Hamid Delshad"}</TableCell>
+              <TableCell>{`${user.firstName} ${user.lastName}`}</TableCell>
             </TableRow>
 
             <TableRow
@@ -69,7 +71,7 @@ const UserInformation = () => {
               <TableCell component="th" scope="row">
                 {"Email"}
               </TableCell>
-              <TableCell>{"hamid@gmail.com"}</TableCell>
+              <TableCell>{user.email}</TableCell>
             </TableRow>
 
             <TableRow
