@@ -17,13 +17,13 @@ function App() {
     <Box className="App">
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/registration" element={<Registration />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/userInformation" element={<UserInformation />}></Route>
-        <Route path="/addFood" element={<AddFood />}></Route>
-        <Route path="/updateFood" element={<UpdateFood />}></Route>
-        <Route path="/foodDetail" element={<FoodInformation />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/userInformation" element={<UserInformation />} />
+        <Route path="/addFood" element={<AddFood />} />
+        <Route path="/updateFood" element={<UpdateFood />} />
+        <Route path="/foodDetail" element={<FoodInformation />} />
       </Routes>
       <Footer />
     </Box>
