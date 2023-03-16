@@ -1,6 +1,6 @@
 .hero-container{
   height: 700px;
-  background-image: url('../../assets/back.jpg');
+  background-image: url('../../../assets/back.jpg');
   background-position: center;
   background-size: cover;
 }
