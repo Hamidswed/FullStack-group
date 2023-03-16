@@ -31,6 +31,14 @@ const userSlice = createSlice({
     loginHandler: (state, action) => {
       state.isLogin = action.payload;
     },
+    // getUsersRequest: (state) => {
+    //   state.user.isAdmin = false;
+    //   state.user.isBanned = false;
+    // },
+    // updateUserRequest: (state) => {
+    //   state.user.isAdmin = false;
+    //   state.user.isBanned = false;
+    // },
   },
 });
 
