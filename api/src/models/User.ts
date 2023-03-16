@@ -8,6 +8,7 @@ export type UserDocument = Document & {
   isAdmin: boolean;
   isBanned: boolean;
   image: string;
+  isGoogleLogin: boolean;
 };
 
 const UserSchema = new mongoose.Schema({
@@ -26,7 +27,7 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    
   },
   isAdmin: {
     type: Boolean,
@@ -40,6 +41,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default:
       "https://source.boringavatars.com/pixel/120/Stefan?colors=26a653,2a1d8f,79646a",
+  },
+  isGoogleLogin: {
+    type: Boolean,
+    default: false,
   },
 });
 

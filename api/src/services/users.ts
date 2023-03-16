@@ -18,11 +18,8 @@ const getUserById = async (userId: string): Promise<UserDocument | null> => {
   return foundUser;
 };
 
-const findUserByEmail = async (
-  payload: Partial<UserDocument>
-): Promise<UserDocument | null> => {
-  const userEmail = payload.email;
-  const foundUser = await User.findOne({ email: userEmail });
+const findUserByEmail = async (email: string): Promise<UserDocument | null> => {
+  const foundUser = await User.findOne({ email: email });
   return foundUser;
 };
 
@@ -37,7 +34,26 @@ const updateUserById = async (
 ): Promise<UserDocument | null> => {
   return User.findByIdAndUpdate(id, update, { new: true });
 };
-
+const createOrFindUserByEmail = async (
+  payload: Partial<UserDocument>
+): Promise<UserDocument | null> => {
+  console.log(payload, "payload");
+  //email to find user by email
+  const userEmail = payload.email;
+  const result = await User.findOne({ email: userEmail });
+  if (result) {
+    return result;
+  } else {
+    //create new user
+    const user = new User({
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      email: payload.email,
+      isGoogleLogin: true,
+    });
+    return user.save();
+  }
+};
 export default {
   createUser,
   getUserList,
@@ -45,4 +61,5 @@ export default {
   findUserByEmail,
   deleteUserById,
   updateUserById,
+  createOrFindUserByEmail,
 };

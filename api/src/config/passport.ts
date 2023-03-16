@@ -15,6 +15,7 @@ export const jwtStrategy = new JwtStrategy(
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   },
   async (payload, done) => {
+    console.log(payload,'payload');
     const email = payload.email;
     const foundUser = await UserServices.findUserByEmail(email);
     if (!foundUser) {
@@ -26,15 +27,14 @@ export const jwtStrategy = new JwtStrategy(
 
 export const googleStrategy = new GoogleTokenStrategy(
   { clientID: CLIENT_ID },
-  async function (parsedToken, googleId: {}, done) {
-    console.log(parsedToken, "parsedToken");
+  async (parsedToken, google_id: string, done) => {
+    console.log(parsedToken, "parsed token");
     const userPayload = {
       firstName: parsedToken.payload.given_name,
       lastName: parsedToken.payload.family_name,
       email: parsedToken.payload.email,
     };
-
-    const user = await UserServices.findUserByEmail(userPayload);
+    const user = await UserServices.createOrFindUserByEmail(userPayload);
     done(null, user);
   }
 );

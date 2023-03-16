@@ -1,10 +1,11 @@
 // User Controller: logic to deal with request and response
 
 import { Request, Response } from "express";
-
-import User from "../models/User";
-import UserServices from "../services/users";
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+import User, { UserDocument } from "../models/User";
+
+import UserServices from "../services/users";
 import generateToken from "../utils/generateToken";
 
 //1: Get (User) Controller
@@ -53,7 +54,8 @@ export const createUserController = async (req: Request, res: Response) => {
     console.log(error);
   }
 };
-
+dotenv.config();
+const JWT_SECRET = process.env.JWT_SECRET as string;
 export const logInWithPassword = async (req: Request, res: Response) => {
   try {
     // get user information from DB and make token (with jsonwebtoken packages)
@@ -97,6 +99,22 @@ export const updateUserByIdController = async (req: Request, res: Response) => {
       req.body
     );
     res.json(updateUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
+//google part
+export const googleAuthenticate = async (req: Request, res: Response) => {
+  try {
+    // access the data from passport :done (null, user)
+    console.log(req, "request");
+    const userData = req.user as UserDocument;
+    if (!userData) {
+      res.json({ message: "Can't find user with the email!" });
+      return;
+    }
+    const token = generateToken(req.body.email, userData.firstName);
+    res.json({ token, userData });
   } catch (error) {
     console.log(error);
   }

@@ -12,7 +12,20 @@ const getCommentsByUserId = async (
   return Comment.find({ userId: userIdRequest }).populate("userId");
 };
 
+const getAllComments = async (): Promise<CommentDocument[]> => {
+  return Comment.find();
+};
+
+const deleteCommentById = async (
+  id: string
+): Promise<CommentDocument | null> => {
+  const foundComment = Comment.findByIdAndDelete(id);
+  return foundComment;
+};
+
 export default {
   createComment,
   getCommentsByUserId,
+  getAllComments,
+  deleteCommentById,
 };
