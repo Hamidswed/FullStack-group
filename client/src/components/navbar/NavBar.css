@@ -1,4 +1,23 @@
-li {
-  display: inline;
-  margin-inline: 20px;
+.navbar-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width:100% ;
+  background-color: gray;
+  height: 100px;
+  padding: 10px 50px;
+}
+.navbar-left{
+  flex:2
+}
+.navbar-left ul{
+  display: flex;
+  gap: 40px;
+}
+.navbar-center{
+  flex: 1;
+}
+.navbar-right{
+  flex:2
 }
