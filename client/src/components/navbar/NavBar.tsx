@@ -1,32 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../../assets/logo.svg";
 import "./NavBar.css";
 
 function NavBar() {
   return (
     <div className="navbar-container">
       <div className="navbar-left">
-         <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/registration">Register</Link>
-        </li>
-        <li>
-          <Link to="/login">Log In</Link>
-        </li>
-        <li>
-          <Link to="/userInformation">UserInformation</Link>
-        </li>
-      </ul>
+        <Link to="/">Home</Link>
+        <Link to="/">All Recipe</Link>
       </div>
-     
+
       <div className="navbar-center">
-        logo
+        <img src={Logo} alt="logo" />
       </div>
       <div className="navbar-right">
-        right
+        <Link to="/login">Log In</Link>
+        <Link to="/registration">Register</Link>
       </div>
     </div>
   );
