@@ -4,8 +4,9 @@ import "./NavBar.css";
 
 function NavBar() {
   return (
-    <div>
-      <ul>
+    <div className="navbar-container">
+      <div className="navbar-left">
+         <ul>
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -19,6 +20,14 @@ function NavBar() {
           <Link to="/userInformation">UserInformation</Link>
         </li>
       </ul>
+      </div>
+     
+      <div className="navbar-center">
+        logo
+      </div>
+      <div className="navbar-right">
+        right
+      </div>
     </div>
   );
 }
