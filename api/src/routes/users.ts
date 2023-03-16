@@ -24,7 +24,12 @@ userRouter.get(
   getUserListController
 );
 userRouter.get("/:id", getUserByIdController);
-userRouter.post("/", createUserController);
+userRouter.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  AdminCheck,
+  createUserController
+);
 userRouter.delete("/:id", deleteUserByIdController);
 userRouter.put(
   "/:id",

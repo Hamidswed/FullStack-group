@@ -49,6 +49,7 @@ const createOrFindUserByEmail = async (
       firstName: payload.firstName,
       lastName: payload.lastName,
       email: payload.email,
+      isGoogleLogin: true,
     });
     return user.save();
   }
