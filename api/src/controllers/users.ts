@@ -1,7 +1,6 @@
 // User Controller: logic to deal with request and response
 
 import { Request, Response } from "express";
-import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import User, { UserDocument } from "../models/User";
@@ -43,7 +42,6 @@ export const createUserController = async (req: Request, res: Response) => {
       lastName: lastName,
       email: email,
       password: hashedPassword,
-      isGoogleLogin:false
     });
 
     // New user will save in DB via services and that user will return as well
