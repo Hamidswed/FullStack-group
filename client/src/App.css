@@ -2,6 +2,8 @@
   text-align: center;
 }
 
-.about-page, .favorite-page{
+.about-page,
+.favorite-page,
+.all-recipes-page{
   min-height: 100vh;
 }

@@ -29,7 +29,7 @@ function NavBar() {
     <div className="navbar-container">
       <div className="navbar-left">
         <Link to="/">Home</Link>
-        <Link to="/">All Recipes</Link>
+        <Link to="/all-recipes">All Recipes</Link>
         <Link to="/about">About</Link>
       </div>
 
