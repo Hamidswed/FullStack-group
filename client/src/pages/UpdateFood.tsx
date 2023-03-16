@@ -1,10 +1,14 @@
-import React from 'react';
-import UpdateFoodItem from '../components/admin/updateFood/UpdateFood';
+import React from "react";
+import UpdateFoodItem from "../components/admin/updateFood/UpdateFood";
 
 const UpdateFood = () => {
   return (
-    <div><UpdateFoodItem /></div>
-  )
-}
+    <div>
+      <div>
+        <UpdateFoodItem />
+      </div>
+    </div>
+  );
+};
 
-export default UpdateFood
+export default UpdateFood;
