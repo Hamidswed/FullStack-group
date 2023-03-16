@@ -8,8 +8,10 @@ import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import UserInformation from "./pages/UserInformation";
 import AddFood from "./pages/AddFood";
-import UpdateFood from "./pages/UpdateFood";
+import UpdateFood from "./components/admin/updateFood/UpdateFood";
 import FoodInformation from "./pages/FoodInformation";
+import Recipes from "./pages/Recipes";
+import RecipeDetail from "./components/recipeDetail/RecipeDetail";
 import Footer from "./components/footer/Footer";
 
 function App() {
@@ -17,13 +19,15 @@ function App() {
     <Box className="App">
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/registration" element={<Registration />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/userInformation" element={<UserInformation />}></Route>
-        <Route path="/addFood" element={<AddFood />}></Route>
-        <Route path="/updateFood" element={<UpdateFood />}></Route>
-        <Route path="/foodDetail" element={<FoodInformation />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/userInformation" element={<UserInformation />} />
+        <Route path="/addFood" element={<AddFood />} />
+        <Route path="/updateFood" element={<UpdateFood />} />
+        <Route path="/foodDetail" element={<FoodInformation />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipeDetail" element={<RecipeDetail />} />
       </Routes>
       <Footer />
     </Box>

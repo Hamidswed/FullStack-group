@@ -10,10 +10,16 @@ function NavBar() {
           <Link to="/">Home</Link>
         </li>
         <li>
+          <Link to="/recipes">All Recipes</Link>
+        </li>
+        <li>
           <Link to="/registration">Register</Link>
         </li>
         <li>
           <Link to="/login">Log In</Link>
+        </li>
+        <li>
+          <Link to="/foodDetail">RecipesInformation</Link>
         </li>
         <li>
           <Link to="/userInformation">UserInformation</Link>
