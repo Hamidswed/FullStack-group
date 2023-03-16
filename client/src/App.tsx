@@ -11,6 +11,8 @@ import AddFood from "./pages/AddFood";
 import UpdateFood from "./pages/UpdateFood";
 import FoodInformation from "./pages/FoodInformation";
 import Footer from "./components/footer/Footer";
+import About from "./pages/About";
+import Favorite from "./pages/Favorite";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/addFood" element={<AddFood />} />
         <Route path="/updateFood" element={<UpdateFood />} />
         <Route path="/foodDetail" element={<FoodInformation />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/favorites" element={<Favorite />} />
       </Routes>
       <Footer />
     </Box>
