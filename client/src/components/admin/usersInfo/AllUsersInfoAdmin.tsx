@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import fetchUser from "../../../redux/thunk/user";
