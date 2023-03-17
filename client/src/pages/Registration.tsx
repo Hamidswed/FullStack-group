@@ -4,8 +4,10 @@ import RegistrationForm from "../components/users/registrationForm/RegistrationF
 
 const Registration = () => {
   return (
-    <div><RegistrationForm /></div>
-  )
-}
+    <div className="regiter-page">
+      <RegistrationForm />
+    </div>
+  );
+};
 
-export default Registration
+export default Registration;

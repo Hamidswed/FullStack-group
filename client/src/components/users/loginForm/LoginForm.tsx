@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import FormSchema from "../loginSchema/formSchema";
-
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import { Alert, Button, TextField } from "@mui/material";
 
 import { Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
-import { userLogin } from "../../../redux/thunk/userLogin";
+// import { userLogin } from "../../../redux/thunk/userLogin";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import './loginForm.css'
-
+import axios from "axios";
+import { url } from "../../../App";
+import "./loginForm.css";
+import { userActions } from "../../../redux/slice/user";
 
 // Type Declaration
 export type InitialTypes = {
@@ -20,20 +21,57 @@ export type InitialTypes = {
 };
 
 const LoginForm = () => {
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
+  const isLogin = useSelector((state: RootState) => state.user.isLogin);
+  const error = useSelector((state: RootState) => state.user.error);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  
+  
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
   // Initial Values
   const initialValues: InitialTypes = {
     email: "",
     password: "",
   };
 
- 
   // Function Call on Submit
   const submitHandler = async (values: InitialTypes) => {
-    await dispatch(userLogin(values));
-    token && navigate("/user");
+    axios
+      .post(`${url}/users/login`, values)
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(data, "data");
+        if (data.message === "invalid") {
+          dispatch(userActions.errorHandler("This email is not registerd!"));
+          handleClick()
+          return;
+        } else if (data.message === "wrong password!") {
+          dispatch(userActions.errorHandler("Email or password is wrong!"));
+          handleClick()
+          return;
+        } else {
+          dispatch(userActions.getUser(data.userData));
+          dispatch(userActions.loginHandler(true));
+          const token = data.token;
+          console.log(token, "token in thunk");
+          localStorage.setItem("token", token);
+          token && navigate("/user");
+        }
+      });
   };
 
   return (
@@ -84,6 +122,11 @@ const LoginForm = () => {
           );
         }}
       </Formik>
+      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          {error}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

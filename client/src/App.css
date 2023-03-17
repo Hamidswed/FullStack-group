@@ -6,6 +6,7 @@
 .favorite-page,
 .all-recipes-page,
 .login-page,
+.regiter-page,
 .user-info-page {
   min-height: 100vh;
 }
@@ -15,4 +16,8 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+}
+.regiter-page{
+  display: flex;
+  justify-content: center;
 }
