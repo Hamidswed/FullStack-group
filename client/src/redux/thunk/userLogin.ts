@@ -11,8 +11,11 @@ export function userLogin(values: InitialTypes) {
       .then((res) => res.data)
       .then((data) => {
         console.log(data, "data");
-        if (data.message === "invalid" || data.message === "wrong password!") {
-          dispatch(userActions.loginHandler(false));
+        if (data.message === "invalid") {
+          dispatch(userActions.errorHandler("This email is not registerd!"));
+        }
+        if (data.message === "wrong password!") {
+          dispatch(userActions.errorHandler("Email or password is wrong!"));
           return;
         } else {
           dispatch(userActions.getUser(data.userData));

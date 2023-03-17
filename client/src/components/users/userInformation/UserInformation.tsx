@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -6,9 +6,13 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import EditIcon from "@mui/icons-material/Edit";
+import CheckIcon from '@mui/icons-material/Check';
 import Paper from "@mui/material/Paper";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import "./userInfo.css";
+import { IconButton } from "@mui/material";
 
 // function createData(
 //   Name: string,
@@ -29,13 +33,17 @@ import { RootState } from "../../../redux/store";
 // ];
 
 const UserInformation = () => {
-const user = useSelector((state:RootState)=>state.user.user)
+  const [isFnameEdit, setIsFnameEdit] = useState(false);
+  const [isLnameEdit, setIsLnameEdit] = useState(false);
+  const user = useSelector((state: RootState) => state.user.user);
 
   return (
-    <div>
-      <h1>My Account's Information</h1>
-      <TableContainer component={Paper} sx={{ maxWidth: 700, ml: 60 }}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+    <div className="user-info-container">
+      <div>
+        <img src={user.image} alt={user.firstName} />
+      </div>
+      <TableContainer component={Paper} sx={{ maxWidth: 600 }}>
+        <Table sx={{ minWidth: 500 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
               <TableCell>
@@ -44,6 +52,9 @@ const user = useSelector((state:RootState)=>state.user.user)
               <TableCell>
                 <b>Information</b>
               </TableCell>
+              <TableCell>
+                <b>Edit</b>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -51,18 +62,32 @@ const user = useSelector((state:RootState)=>state.user.user)
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {"Full Name"}
+                {"First Name"}
               </TableCell>
-              <TableCell>{`${user.firstName} ${user.lastName}`}</TableCell>
+              <TableCell>{isFnameEdit ? <input type="text" defaultValue={user.firstName}/> : user.firstName}</TableCell>
+              <TableCell>
+                {isFnameEdit ? <IconButton onClick={() => setIsFnameEdit(false)}>
+                  <CheckIcon fontSize="small" />
+                </IconButton>:<IconButton onClick={() => setIsFnameEdit(true)}>
+                  <EditIcon fontSize="small" />
+                </IconButton>}
+              </TableCell>
             </TableRow>
 
             <TableRow
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {"Gender"}
+                {"Last Name"}
               </TableCell>
-              <TableCell>{"Male"}</TableCell>
+              <TableCell>{isLnameEdit ? <input type="text" defaultValue={user.lastName}/> : user.lastName}</TableCell>
+              <TableCell>
+              {isLnameEdit ? <IconButton onClick={() => setIsLnameEdit(false)}>
+                  <CheckIcon fontSize="small" />
+                </IconButton>:<IconButton onClick={() => setIsLnameEdit(true)}>
+                  <EditIcon fontSize="small" />
+                </IconButton>}
+              </TableCell>
             </TableRow>
 
             <TableRow
@@ -72,6 +97,7 @@ const user = useSelector((state:RootState)=>state.user.user)
                 {"Email"}
               </TableCell>
               <TableCell>{user.email}</TableCell>
+              <TableCell />
             </TableRow>
 
             <TableRow

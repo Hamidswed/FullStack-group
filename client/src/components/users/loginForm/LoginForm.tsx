@@ -10,6 +10,7 @@ import { AppDispatch, RootState } from "../../../redux/store";
 import { userLogin } from "../../../redux/thunk/userLogin";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import './loginForm.css'
 
 // Type Declaration
 export type InitialTypes = {
@@ -18,7 +19,6 @@ export type InitialTypes = {
 };
 
 const LoginForm = () => {
-  const isLogin = useSelector((state: RootState) => state.user.isLogin);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -28,16 +28,17 @@ const LoginForm = () => {
     password: "",
   };
 
+ 
   // Function Call on Submit
-  const submitHandler = (values: InitialTypes) => {
-    dispatch(userLogin(values));
-    if (isLogin && token) navigate("/user");
+  const submitHandler = async (values: InitialTypes) => {
+    await dispatch(userLogin(values));
+    token && navigate("/user");
   };
 
   return (
     <>
       <div>
-        <h1>Login Your Account</h1>
+        <h2>Login Your Account</h2>
         <span>We're missing your contribution.</span>
       </div>
       <Formik
@@ -47,7 +48,7 @@ const LoginForm = () => {
       >
         {({ errors, touched, handleChange }) => {
           return (
-            <Form>
+            <Form className="form-container">
               <div className="form-field">
                 <TextField
                   className="textBox"
@@ -56,7 +57,7 @@ const LoginForm = () => {
                   onChange={handleChange}
                 />
                 {errors.email && touched.email ? (
-                  <div className="error-message">{errors.email}</div>
+                  <p className="error-message">{errors.email}</p>
                 ) : null}
               </div>
 
@@ -69,7 +70,7 @@ const LoginForm = () => {
                   onChange={handleChange}
                 />
                 {errors.password && touched.password ? (
-                  <div className="error-message">{errors.password}</div>
+                  <p className="error-message">{errors.password}</p>
                 ) : null}
               </div>
 

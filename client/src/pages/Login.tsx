@@ -5,7 +5,7 @@ import LoginForm from "../components/users/loginForm/LoginForm";
 
 function Login() {
   return (
-    <div>
+    <div className="login-page">
       <Box style={{ paddingBlock: "50px" }}>
         <LoginForm />
       </Box>

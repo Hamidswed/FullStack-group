@@ -1,11 +1,15 @@
+.form-container{
+  margin-top: 20px;
+}
 .form-field {
   text-align: center;
   margin: 5px auto;
   padding: 12px;
   max-width: 450px;
   display: flex;
-  justify-content: space-evenly;
-  margin-top: 20px;
+  flex-direction: column;
+  gap: 10px;
+  
 }
 
 .textBox {
