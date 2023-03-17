@@ -13,14 +13,15 @@ export function userLogin(values: InitialTypes) {
         console.log(data, "data");
         if (data.message === "invalid") {
           dispatch(userActions.errorHandler("This email is not registerd!"));
-        }
-        if (data.message === "wrong password!") {
+          return;
+        } else if (data.message === "wrong password!") {
           dispatch(userActions.errorHandler("Email or password is wrong!"));
           return;
         } else {
           dispatch(userActions.getUser(data.userData));
           dispatch(userActions.loginHandler(true));
           const token = data.token;
+          console.log(token, "token in thunk");
           localStorage.setItem("token", token);
         }
       });
