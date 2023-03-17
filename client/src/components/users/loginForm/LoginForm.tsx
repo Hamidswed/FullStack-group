@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import './loginForm.css'
 
+
 // Type Declaration
 export type InitialTypes = {
   email: string;

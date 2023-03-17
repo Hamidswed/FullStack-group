@@ -36,7 +36,6 @@ const UserInformation = () => {
   const [isFnameEdit, setIsFnameEdit] = useState(false);
   const [isLnameEdit, setIsLnameEdit] = useState(false);
   const user = useSelector((state: RootState) => state.user.user);
-
   return (
     <div className="user-info-container">
       <div>
