@@ -9,6 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./userProfile.css";
+import { userActions } from "./../../../redux/slice/user";
 
 export type InitialUpdateType = {
   firstName: string;
@@ -47,6 +48,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const logOut = () => {
     localStorage.clear();
+    dispatch(userActions.loginHandler(false));
     navigate("/login");
   };
 

@@ -3,8 +3,12 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
 import "./NavBar.css";
+import { useSelector } from 'react-redux';
+import { RootState } from "../../redux/store";
 
 function NavBar() {
+  const user = useSelector((state:RootState)=>state.user.user)
+  const isLogin = useSelector((state:RootState)=>state.user.isLogin)
   const LoginBTN = styled(Button)({
     color: "#fff",
     backgroundColor: "black",
@@ -47,8 +51,8 @@ function NavBar() {
           </StyledBadge>
         </Link>
         <Link to="/registration">Register</Link>
-        <Link to="/login">
-          <LoginBTN>Log In</LoginBTN>
+        <Link to={isLogin?"/user":"/login"}>
+          <LoginBTN>{isLogin?user.firstName: "Log In"}</LoginBTN>
         </Link>
       </div>
     </div>
