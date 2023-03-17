@@ -19,8 +19,8 @@ const userRouter = Router();
 // Call Express Methods for User Collection by userRouter
 userRouter.get(
   "/",
-  passport.authenticate("jwt", { session: false }),
-  AdminCheck,
+  // passport.authenticate("jwt", { session: false }),
+  // AdminCheck,
   getUserListController
 );
 userRouter.get("/:id", getUserByIdController);
