@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { userUpdate } from "./../../../redux/thunk/userUpdate";
 import { useSelector } from "react-redux";
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, styled, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./userProfile.css";
 
 export type InitialUpdateType = {
@@ -33,6 +33,21 @@ const UserProfile = () => {
   const submitHandler = (values: InitialUpdateType) => {
     setIsEdit(false);
     dispatch(userUpdate(user._id, values));
+  };
+
+  const CheckOutBTN = styled(Button)({
+    color: "#fff",
+    backgroundColor: "black",
+    border: "none",
+    "&:hover": {
+      backgroundColor: "red",
+      border: "none",
+    },
+  });
+  const navigate = useNavigate();
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/login");
   };
 
   return (
@@ -115,19 +130,24 @@ const UserProfile = () => {
                   </Button>
                 )}
 
-                {/* <CheckOutBTN
+                <CheckOutBTN
                   variant="outlined"
                   onClick={logOut}
                   type="button"
                   sx={{ marginTop: "20px" }}
                 >
                   log out
-                </CheckOutBTN> */}
+                </CheckOutBTN>
               </Form>
             );
           }}
         </Formik>
       </div>
+      {user.isAdmin ? (
+        <div>
+          <Button variant="outlined">User list</Button>
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -1,5 +1,9 @@
 .user-profile-container{
-  width: 30%;
+  width: 40%;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 30px;
 }
 .user-profile-form{
   display: flex;
