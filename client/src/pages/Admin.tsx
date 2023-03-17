@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../redux/store";
-import { fetchUser, fetchAllUsers } from "../../../redux/thunk/user";
-
+import { AppDispatch, RootState } from "../redux/store";
+import fetchUsers from "../redux/thunk/usersList";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,7 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
 
-function AllUsersInfoAdmin() {
+function Admin() {
   // const dispatch = useDispatch<AppDispatch>();
   // const user = useSelector((state: RootState) => state.user.user);
   // const userId = user._id;
@@ -25,10 +24,10 @@ function AllUsersInfoAdmin() {
   // }, [dispatch, userId]);
   // console.log(typeof user, "user");
   const dispatch = useDispatch<AppDispatch>();
-  const users = useSelector((state: RootState) => state.userList.userList);
+  const users = useSelector((state: RootState) => state.userList.usersData);
   console.log(users, "users");
   useEffect(() => {
-    dispatch(fetchAllUsers());
+    dispatch(fetchUsers());
   }, [dispatch]);
   // const userObj = users.map((person) => <div>{person.firstName}</div>);
 
@@ -73,4 +72,4 @@ function AllUsersInfoAdmin() {
   );
 }
 
-export default AllUsersInfoAdmin;
+export default Admin;

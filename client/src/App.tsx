@@ -13,6 +13,7 @@ import Footer from "./components/footer/Footer";
 import About from "./pages/About";
 import Favorite from "./pages/Favorite";
 import AllRecipes from "./pages/AllRecipes";
+import Admin from "./pages/Admin";
 
 export const url = "http://localhost:8000";
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/foodDetail" element={<FoodInformation />} />
         <Route path="/about" element={<About />} />
         <Route path="/favorites" element={<Favorite />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </Box>
