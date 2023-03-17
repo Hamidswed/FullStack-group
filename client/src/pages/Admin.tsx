@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import { AppDispatch, RootState } from "../redux/store";
 import fetchUsers from "../redux/thunk/usersList";
 import { fetchUser } from "../redux/thunk/user";
@@ -14,7 +15,6 @@ import { Box, Button } from "@mui/material";
 import { usersActions } from "../redux/slice/usersList";
 
 function Admin() {
-  const [click, setClick] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user.user);
   const userId = user._id;
@@ -40,6 +40,30 @@ function Admin() {
       dispatch(usersActions.toggleBanStatus(userId));
     };
 
+  //   const handleToggleAdmin =
+  //     (userId: string): React.MouseEventHandler<HTMLButtonElement> =>
+  //     (e) => {
+  //       e.preventDefault();
+  //       dispatch(usersActions.toggleAdminStatus(userId));
+  //     };
+  const handleToggleAdmin =
+    (userId: string): React.MouseEventHandler<HTMLButtonElement> =>
+    async (e) => {
+      e.preventDefault();
+      const token = localStorage.getItem("token");
+      try {
+        const response = await axios.put(
+          `http://localhost:8000/users/${userId}`,
+          { isAdmin: !user.isAdmin },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        dispatch(usersActions.toggleAdminStatus(userId));
+      } catch (error) {
+        console.error(error);
+      }
+    };
   return (
     <Box style={{ width: "90%", marginInline: "auto" }}>
       <TableContainer component={Paper}>
@@ -77,7 +101,11 @@ function Admin() {
                   </Button>
                 </TableCell>
 
-                <TableCell align="right">user{user.isBanned}</TableCell>
+                <TableCell align="right">
+                  <Button onClick={handleToggleAdmin(user._id)}>
+                    {user.isAdmin ? "Admin" : "User"}
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

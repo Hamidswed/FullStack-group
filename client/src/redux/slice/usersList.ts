@@ -26,6 +26,13 @@ const usersSlice = createSlice({
         userToToggle.isBanned = !userToToggle.isBanned;
       }
     },
+    toggleAdminStatus: (state, action) => {
+      const userId = action.payload;
+      const userToggle = state.usersData.find((user) => user._id === userId);
+      if (userToggle) {
+        userToggle.isAdmin = !userToggle.isAdmin;
+      }
+    },
   },
 });
 
