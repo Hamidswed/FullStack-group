@@ -26,33 +26,10 @@ function NavBar() {
   }));
 
   return (
-<<<<<<< HEAD
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/recipes">All Recipes</Link>
-        </li>
-        <li>
-          <Link to="/registration">Register</Link>
-        </li>
-        <li>
-          <Link to="/login">Log In</Link>
-        </li>
-        <li>
-          <Link to="/foodDetail">RecipesInformation</Link>
-        </li>
-        <li>
-          <Link to="/userInformation">UserInformation</Link>
-        </li>
-      </ul>
-=======
     <div className="navbar-container">
       <div className="navbar-left">
         <Link to="/">Home</Link>
-        <Link to="/">All Recipes</Link>
+        <Link to="/all-recipes">All Recipes</Link>
         <Link to="/about">About</Link>
       </div>
 
@@ -74,7 +51,6 @@ function NavBar() {
           <LoginBTN>Log In</LoginBTN>
         </Link>
       </div>
->>>>>>> 923e4e04188f6b30d6b142d134653e0b1369d379
     </div>
   );
 }
