@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
 
 function createData(
   Name: string,
@@ -20,6 +22,9 @@ function createData(
 }
 
 const FoodInformation = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div>
       <h1>Food Recipes Information</h1>
@@ -39,6 +44,8 @@ const FoodInformation = () => {
               <TableCell>
                 <b>Action</b>
               </TableCell>
+              <TableCell>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -57,6 +64,7 @@ const FoodInformation = () => {
                   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 }
               </TableCell>
+              <TableCell><EditIcon onClick={()=> navigate(`/updateFood`)} /></TableCell>
               <TableCell><DeleteIcon /></TableCell>
             </TableRow>
 
@@ -71,6 +79,7 @@ const FoodInformation = () => {
               </TableCell>
               <TableCell>{"Chickpea Salad"}</TableCell>
               <TableCell>{"t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution"}</TableCell>
+              <TableCell><EditIcon onClick={()=> navigate(`/updateFood`)} /></TableCell>
               <TableCell><DeleteIcon /></TableCell>
             </TableRow>
 
@@ -85,6 +94,7 @@ const FoodInformation = () => {
               </TableCell>
               <TableCell>{"Super Nourishing Beans & Greens"}</TableCell>
               <TableCell>{"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old."}</TableCell>
+              <TableCell><EditIcon onClick={()=> navigate(`/updateFood`)} /></TableCell>
               <TableCell><DeleteIcon /></TableCell>
             </TableRow>
 
@@ -99,6 +109,7 @@ const FoodInformation = () => {
               </TableCell>
               <TableCell>{"Roasted Cauliflower Tacos with Chipotle Romesco"}</TableCell>
               <TableCell>{"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum."}</TableCell>
+              <TableCell><EditIcon onClick={()=> navigate(`/updateFood`)} /></TableCell>
               <TableCell><DeleteIcon /></TableCell>
             </TableRow>
           </TableBody>

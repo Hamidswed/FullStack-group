@@ -5,6 +5,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 import { Form, Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/store";
+import { userLogin } from "../../../redux/thunk/userLogin";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import './loginForm.css'
+
 
 // Type Declaration
 export type InitialTypes = {
@@ -13,21 +20,26 @@ export type InitialTypes = {
 };
 
 const LoginForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   // Initial Values
   const initialValues: InitialTypes = {
     email: "",
     password: "",
   };
 
+ 
   // Function Call on Submit
-  const submitHandler = (values: InitialTypes) => {
-    console.log(values);
+  const submitHandler = async (values: InitialTypes) => {
+    await dispatch(userLogin(values));
+    token && navigate("/user");
   };
 
   return (
     <>
       <div>
-        <h1>Login Your Account</h1>
+        <h2>Login Your Account</h2>
         <span>We're missing your contribution.</span>
       </div>
       <Formik
@@ -37,7 +49,7 @@ const LoginForm = () => {
       >
         {({ errors, touched, handleChange }) => {
           return (
-            <Form>
+            <Form className="form-container">
               <div className="form-field">
                 <TextField
                   className="textBox"
@@ -46,7 +58,7 @@ const LoginForm = () => {
                   onChange={handleChange}
                 />
                 {errors.email && touched.email ? (
-                  <div className="error-message">{errors.email}</div>
+                  <p className="error-message">{errors.email}</p>
                 ) : null}
               </div>
 
@@ -59,7 +71,7 @@ const LoginForm = () => {
                   onChange={handleChange}
                 />
                 {errors.password && touched.password ? (
-                  <div className="error-message">{errors.password}</div>
+                  <p className="error-message">{errors.password}</p>
                 ) : null}
               </div>
 
