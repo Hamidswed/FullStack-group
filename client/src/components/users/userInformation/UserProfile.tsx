@@ -112,7 +112,7 @@ const UserProfile = () => {
                 {isEdit ? (
                   <div className="user-profile-btn">
                     <Button variant="outlined" onClick={() => setIsEdit(false)}>
-                      cancle
+                      cancel
                     </Button>
                     <Button variant="contained" type="submit">
                       Save

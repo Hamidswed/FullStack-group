@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import fetchUsers from "../redux/thunk/usersList";
+import { fetchUser } from "../redux/thunk/user";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,29 +10,35 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { usersActions } from "../redux/slice/usersList";
 
 function Admin() {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const user = useSelector((state: RootState) => state.user.user);
-  // const userId = user._id;
-
-  // useEffect(() => {
-  //   if (userId) {
-  //     dispatch(fetchUser(userId));
-  //   }
-  //   console.log(userId, "userId");
-  // }, [dispatch, userId]);
-  // console.log(typeof user, "user");
+  const [click, setClick] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((state: RootState) => state.user.user);
+  const userId = user._id;
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(fetchUser(userId));
+    }
+    console.log(userId, "userId");
+  }, [dispatch, userId]);
+  console.log(typeof user, "user");
+
   const users = useSelector((state: RootState) => state.userList.usersData);
   console.log(users, "users");
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-  // const userObj = users.map((person) => <div>{person.firstName}</div>);
 
-  // console.log(typeof userObj, "userObj");
+  const handleToggleBan =
+    (userId: string): React.MouseEventHandler<HTMLButtonElement> =>
+    (e) => {
+      e.preventDefault();
+      dispatch(usersActions.toggleBanStatus(userId));
+    };
 
   return (
     <Box style={{ width: "90%", marginInline: "auto" }}>
@@ -61,8 +68,16 @@ function Admin() {
                 </TableCell>
                 <TableCell align="right">{user.lastName}</TableCell>
                 <TableCell align="right">{user.email}</TableCell>
-                <TableCell align="right">{user.isAdmin}</TableCell>
-                <TableCell align="right">{user.isBanned}</TableCell>
+                <TableCell align="right">
+                  {user.isAdmin ? "Admin" : "User"}
+                </TableCell>
+                <TableCell align="right">
+                  <Button onClick={handleToggleBan(user._id)}>
+                    {user.isBanned ? "not banned" : "Ban user"}
+                  </Button>
+                </TableCell>
+
+                <TableCell align="right">user{user.isBanned}</TableCell>
               </TableRow>
             ))}
           </TableBody>
