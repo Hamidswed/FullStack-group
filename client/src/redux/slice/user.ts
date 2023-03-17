@@ -34,14 +34,6 @@ const userSlice = createSlice({
     getAllUsers: (state, action) => {
       state.user = action.payload;
     },
-    // getUsersRequest: (state) => {
-    //   state.user.isAdmin = false;
-    //   state.user.isBanned = false;
-    // },
-    // updateUserRequest: (state) => {
-    //   state.user.isAdmin = false;
-    //   state.user.isBanned = false;
-    // },
   },
 });
 
