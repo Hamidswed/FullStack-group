@@ -8,11 +8,11 @@ import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import UserInformation from "./pages/UserInformation";
 import UpdateFood from "./pages/UpdateFood";
-import FoodInformation from "./pages/FoodInformation";
 import Footer from "./components/footer/Footer";
 import About from "./pages/About";
 import Favorite from "./pages/Favorite";
 import AllRecipes from "./pages/AllRecipes";
+import DetailedFood from "./pages/DetailedFood";
 
 export const url = "http://localhost:8000";
 function App() {
@@ -26,7 +26,7 @@ function App() {
         <Route path="/user" element={<UserInformation />} />
         <Route path="/all-recipes" element={<AllRecipes />} />
         <Route path="/updateFood" element={<UpdateFood />} />
-        <Route path="/foodDetail" element={<FoodInformation />} />
+        <Route path="/food/:id" element={<DetailedFood />} />
         <Route path="/about" element={<About />} />
         <Route path="/favorites" element={<Favorite />} />
       </Routes>
