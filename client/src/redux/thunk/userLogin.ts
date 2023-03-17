@@ -3,7 +3,6 @@ import axios from "axios";
 import { url } from "../../App";
 import { InitialTypes } from "../../components/users/loginForm/LoginForm";
 import { userActions } from "./../slice/user";
-import { useNavigate } from "react-router-dom";
 
 export function userLogin(values: InitialTypes) {
   return async (dispatch: AppDispatch) => {
@@ -12,15 +11,17 @@ export function userLogin(values: InitialTypes) {
       .then((res) => res.data)
       .then((data) => {
         console.log(data, "data");
-        if (data.message === "invalid" || data.message === "wrong password!") {
-          dispatch(userActions.loginHandler(false));
+        if (data.message === "invalid") {
+          dispatch(userActions.errorHandler("This email is not registerd!"));
+        }
+        if (data.message === "wrong password!") {
+          dispatch(userActions.errorHandler("Email or password is wrong!"));
           return;
         } else {
           dispatch(userActions.getUser(data.userData));
+          dispatch(userActions.loginHandler(true));
           const token = data.token;
           localStorage.setItem("token", token);
-          const navigate = useNavigate();
-          token && navigate("/user");
         }
       });
   };

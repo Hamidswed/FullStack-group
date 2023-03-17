@@ -4,6 +4,15 @@
 
 .about-page,
 .favorite-page,
-.all-recipes-page{
+.all-recipes-page,
+.login-page,
+.user-info-page {
   min-height: 100vh;
+}
+
+.user-info-page{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
 }

@@ -4,6 +4,7 @@ import { UserType } from "../../types/userType";
 type InitialType = {
   user: UserType;
   isLogin: boolean;
+  error:string
 };
 
 const initialState: InitialType = {
@@ -19,6 +20,7 @@ const initialState: InitialType = {
     isGoogleLogin: false,
   },
   isLogin: false,
+  error:""
 };
 
 const userSlice = createSlice({
@@ -31,6 +33,9 @@ const userSlice = createSlice({
     loginHandler: (state, action) => {
       state.isLogin = action.payload;
     },
+    errorHandler:(state,action)=>{
+      state.error = action.payload
+    }
     // getUsersRequest: (state) => {
     //   state.user.isAdmin = false;
     //   state.user.isBanned = false;

@@ -1,0 +1,26 @@
+.user-profile-container{
+  width: 40%;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.user-profile-form{
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 7px 0;
+  align-items: flex-start;
+}
+.user-profile-error{
+  color: red;
+}
+.user-profile-btn{
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+.user-profile-btn button{
+  width: 100px;
+}
