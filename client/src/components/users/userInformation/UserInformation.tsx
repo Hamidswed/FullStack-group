@@ -8,15 +8,15 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-function createData(
-  Name: string,
-  Email: number,
-  Address: number,
-  Gender: number,
-  Country: number
-) {
-  return { Name, Email, Address, Gender, Country };
-}
+// function createData(
+//   Name: string,
+//   Email: number,
+//   Address: number,
+//   Gender: number,
+//   Country: number
+// ) {
+//   return { Name, Email, Address, Gender, Country };
+// }
 
 // const rows = [
 //   createData("Name", 262, 16.0, 24, 6.0),
@@ -27,6 +27,8 @@ function createData(
 // ];
 
 const UserInformation = () => {
+
+  
   return (
     <div>
       <h1>My Account's Information</h1>

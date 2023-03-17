@@ -4,23 +4,23 @@ import FormSchema from "../loginSchema/formSchema";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import { Form, Field, Formik } from "formik";
+import { Form, Formik } from "formik";
 
 // Type Declaration
-type InitialValues = {
+export type InitialTypes = {
   email: string;
   password?: string;
 };
 
 const LoginForm = () => {
   // Initial Values
-  const initialValues: InitialValues = {
+  const initialValues: InitialTypes = {
     email: "",
     password: "",
   };
 
   // Function Call on Submit
-  const getUserData = (values: InitialValues) => {
+  const submitHandler = (values: InitialTypes) => {
     console.log(values);
   };
 
@@ -33,7 +33,7 @@ const LoginForm = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={FormSchema}
-        onSubmit={getUserData}
+        onSubmit={submitHandler}
       >
         {({ errors, touched, handleChange }) => {
           return (
