@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
-import fetchUser from "../../../redux/thunk/user";
+import { fetchUser, fetchAllUsers } from "../../../redux/thunk/user";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -10,21 +10,32 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Box } from "@mui/material";
 
 function AllUsersInfoAdmin() {
-  const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector((state: RootState) => state.user.user);
-  const userId = user._id;
+  // const dispatch = useDispatch<AppDispatch>();
+  // const user = useSelector((state: RootState) => state.user.user);
+  // const userId = user._id;
 
+  // useEffect(() => {
+  //   if (userId) {
+  //     dispatch(fetchUser(userId));
+  //   }
+  //   console.log(userId, "userId");
+  // }, [dispatch, userId]);
+  // console.log(typeof user, "user");
+  const dispatch = useDispatch<AppDispatch>();
+  const users = useSelector((state: RootState) => state.userList.userList);
+  console.log(users, "users");
   useEffect(() => {
-    if (userId) {
-      dispatch(fetchUser(userId));
-    }
-    console.log(userId, "userId");
-  }, [dispatch, userId]);
-  console.log(typeof user, "user");
+    dispatch(fetchAllUsers());
+  }, [dispatch]);
+  // const userObj = users.map((person) => <div>{person.firstName}</div>);
+
+  // console.log(typeof userObj, "userObj");
+
   return (
-    <div>
+    <Box style={{ width: "90%", marginInline: "auto" }}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -41,22 +52,24 @@ function AllUsersInfoAdmin() {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row"></TableCell>
-              <TableCell align="right">
-                {user.firstName.charAt(0).toUpperCase()}
-              </TableCell>
-              <TableCell align="right">{user.lastName}</TableCell>
-              <TableCell align="right">{user.email}</TableCell>
-              <TableCell align="right">{user.isAdmin}</TableCell>
-              <TableCell align="right">{user.isBanned}</TableCell>
-            </TableRow>
+            {users.map((user) => (
+              <TableRow
+                key={user._id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {user.firstName}
+                </TableCell>
+                <TableCell align="right">{user.lastName}</TableCell>
+                <TableCell align="right">{user.email}</TableCell>
+                <TableCell align="right">{user.isAdmin}</TableCell>
+                <TableCell align="right">{user.isBanned}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Box>
   );
 }
 

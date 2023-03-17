@@ -1,8 +1,9 @@
 import { userActions } from "../slice/user";
+import { userListActions } from "../slice/users";
 import { AppDispatch } from "../store";
 import axios from "axios";
 
-function fetchUser(userId: string | null) {
+export function fetchUser(userId: string | null) {
   return async (dispatch: AppDispatch) => {
     if (!userId) {
       return { message: "no such user " };
@@ -21,4 +22,15 @@ function fetchUser(userId: string | null) {
     }
   };
 }
-export default fetchUser;
+
+export function fetchAllUsers() {
+  return async (dispatch: AppDispatch) => {
+    axios
+      .get("http://localhost:8000/users/")
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(data, "data");
+        dispatch(userListActions.getAllUsers(data));
+      });
+  };
+}
