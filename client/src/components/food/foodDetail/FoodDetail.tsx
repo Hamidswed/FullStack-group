@@ -42,11 +42,9 @@ const FoodDetail = ({ food }: PropType) => {
       <Typography
         variant="body2"
         color="text.secondary"
-        sx={{ maxWidth: 800, ml: 50 }}
+        sx={{ maxWidth: 800, ml: 50, textAlign: "left" }}
       >
-        {
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.All the description about the recipe is mention here"
-        }
+        {food.description}
       </Typography>
 
       <Stack spacing={2} sx={{ maxWidth: 600, ml: 60 }}>
