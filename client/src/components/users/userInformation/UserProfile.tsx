@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { Button, styled, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./userProfile.css";
 import { userActions } from "./../../../redux/slice/user";
 

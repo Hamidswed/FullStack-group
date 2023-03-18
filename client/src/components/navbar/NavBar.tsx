@@ -3,8 +3,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
 import "./NavBar.css";
-import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 function NavBar() {
   const user = useSelector((state: RootState) => state.user.user);

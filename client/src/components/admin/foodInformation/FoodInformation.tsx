@@ -22,7 +22,7 @@ const FoodInformation = () => {
 
   useEffect(() => {
     dispatch(fetchFoodData());
-  }, [dispatch,foodList]);
+  }, [dispatch, foodList]);
 
   return (
     <div className="food-info-container">
@@ -50,13 +50,13 @@ const FoodInformation = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {foodList.map((food,index) => {
+            {foodList.map((food, index) => {
               return (
                 <TableRow
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   key={food._id}
                 >
-                  <TableCell>{index+1}</TableCell>
+                  <TableCell>{index + 1}</TableCell>
 
                   <TableCell component="th" scope="row">
                     <img src={food.image} height={70} alt={food.title} />

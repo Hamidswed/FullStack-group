@@ -2,8 +2,10 @@ import React from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { Box } from "@mui/system";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function GoogleLogIn() {
+  const navigate = useNavigate();
   return (
     <Box>
       <Box style={{ width: "400px", marginInline: "auto" }}>
@@ -16,6 +18,7 @@ function GoogleLogIn() {
             let res = await axios.post(url, { id_token: credential });
             if (res.status === 200) {
               console.log(res, "response from backend");
+              navigate("/user");
             } else {
               alert("Log in failed");
             }
