@@ -19,12 +19,15 @@ import { fetchFoodData } from "../../../redux/thunk/food";
 import { IconButton } from "@mui/material";
 import { url } from "./../../../App";
 import axios from "axios";
+import UpdateFoodModal from "./UpdateFoodModal";
+import { FoodType } from "../../../types/foodType";
 
 const FoodInformation = () => {
   const foodList = useSelector((state: RootState) => state.food.food);
-  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [foodToModal, setFoodToModal] = useState<FoodType>()
 
   useEffect(() => {
     dispatch(fetchFoodData());
@@ -56,6 +59,13 @@ const FoodInformation = () => {
           handleClick();
         }
       });
+  };
+
+  const updateFood = (id:string) => {
+    setOpenModal(true)
+    const foodToUpdate = foodList.find((item)=>item._id===id)
+    setFoodToModal(foodToUpdate)
+
   };
 
   return (
@@ -98,13 +108,13 @@ const FoodInformation = () => {
                   <TableCell>{food.title}</TableCell>
                   <TableCell>{food.description.slice(0, 150)} ...</TableCell>
                   <TableCell>
-                    <IconButton onClick={() => navigate("/updateFood")}>
+                    <IconButton onClick={()=>updateFood(food._id)}>
                       <EditIcon />
                     </IconButton>
                   </TableCell>
                   <TableCell>
                     <IconButton onClick={() => removeFood(food._id)}>
-                      <DeleteIcon color="error"/>
+                      <DeleteIcon color="error" />
                     </IconButton>
                   </TableCell>
                 </TableRow>
@@ -113,6 +123,7 @@ const FoodInformation = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <UpdateFoodModal open={openModal} setOpen={setOpenModal} foodToModal={foodToModal}/>
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
           Product removed successfully!
