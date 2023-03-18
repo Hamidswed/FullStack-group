@@ -10,6 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
+import './foodInfo.css'
 
 function createData(
   Name: string,
@@ -26,9 +27,9 @@ const FoodInformation = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="food-info-container">
       <h1>Food Recipes Information</h1>
-      <TableContainer component={Paper} sx={{ maxWidth: 700, ml: 50 }}>
+      <TableContainer component={Paper} sx={{ maxWidth: "85%" }}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>

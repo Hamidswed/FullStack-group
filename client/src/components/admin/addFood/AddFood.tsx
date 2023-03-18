@@ -5,6 +5,7 @@ import { Alert, Button, TextField } from "@mui/material";
 import { Form, Formik } from "formik";
 import { url } from "../../../App";
 import axios from "axios";
+import "./addFood.css";
 
 // Type Declaration
 type InitialType = {
@@ -39,6 +40,7 @@ const AddFood = () => {
 
   // Function Call on Submit
   const token = localStorage.getItem("token");
+  // rome-ignore lint/suspicious/noExplicitAny: <explanation>
   const submitHandler = (values: InitialType, { resetForm }: any) => {
     axios
       .post(`${url}/food`, values, {
@@ -54,7 +56,7 @@ const AddFood = () => {
   };
 
   return (
-    <>
+    <div className="add-food-container">
       <div>
         <h1>Add delicious recipe detail</h1>
         <span>It's free and always will be.</span>
@@ -66,12 +68,19 @@ const AddFood = () => {
       >
         {({ values, errors, touched, handleChange }) => {
           return (
-            <Form>
-              <div className="form-field">
-                <TextField label="Title" name="title" onChange={handleChange} value={values.title}/>
+            <Form className="add-food-form">
+              <div>
+                <TextField
+                  label="Title"
+                  name="title"
+                  onChange={handleChange}
+                  value={values.title}
+                />
                 {errors.title && touched.title ? (
                   <div className="error-message">{errors.title}</div>
                 ) : null}
+              </div>
+              <div>
                 <TextField
                   label="Image's Link"
                   name="image"
@@ -82,8 +91,7 @@ const AddFood = () => {
                   <div className="error-message">{errors.image}</div>
                 ) : null}
               </div>
-
-              <div className="form-field">
+              <div>
                 <TextField
                   className="textBox"
                   label="Description"
@@ -112,11 +120,8 @@ const AddFood = () => {
           Product added successfully!
         </Alert>
       </Snackbar>
-    </>
+    </div>
   );
 };
 
 export default AddFood;
-function resetForm(arg0: { values: string }) {
-  throw new Error("Function not implemented.");
-}

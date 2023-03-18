@@ -4,14 +4,9 @@ import UpdateFood from "../components/admin/updateFood/UpdateFood";
 
 const FoodMng = () => {
   return (
-    <div>
-      <section>
-        <AddFood />
-        <UpdateFood />
-      </section>
-      <section>
-        <FoodInformation/>
-      </section>
+    <div className="food-mng-page">
+      <AddFood />
+      <FoodInformation />
     </div>
   );
 };
