@@ -147,16 +147,14 @@ const UserProfile = () => {
       </div>
       {user.isAdmin ? (
         <div className="user-profile-management">
-          <Button variant="outlined">User management</Button>
+          <Button variant="outlined" onClick={() => navigate("/admin")}>
+            User management
+          </Button>
           <Button variant="outlined" onClick={() => navigate("/food-mng")}>
             Food management
           </Button>
           <Button variant="outlined">CMT management</Button>
         </div>
-        <Link to="/admin">
-          <Button variant="outlined">User list</Button>
-        </Link>
-
       ) : null}
     </div>
   );
