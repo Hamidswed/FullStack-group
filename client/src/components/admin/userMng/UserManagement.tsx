@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { AppDispatch, RootState } from "../redux/store";
-import fetchUsers from "../redux/thunk/usersList";
-import { fetchUser } from "../redux/thunk/user";
+import { AppDispatch, RootState } from "../../../redux/store";
+import fetchUsers from "../../../redux/thunk/usersList";
+import { fetchUser } from "../../../redux/thunk/user";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,10 +11,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, Button } from "@mui/material";
-import { usersActions } from "../redux/slice/usersList";
+import { Box, Button, Typography } from "@mui/material";
+import { usersActions } from "../../../redux/slice/usersList";
+import { SlBan } from "react-icons/sl";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { url } from "../../../App";
 
-function Admin() {
+function UserManagement() {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user.user);
   const userId = user._id;
@@ -35,37 +38,79 @@ function Admin() {
 
   const handleToggleBan =
     (userId: string): React.MouseEventHandler<HTMLButtonElement> =>
-    (e) => {
+    async (e) => {
       e.preventDefault();
-      dispatch(usersActions.toggleBanStatus(userId));
+      const token = localStorage.getItem("token");
+      //.get is to retrieve the current state of the user data from the server.
+      try {
+        const userResponse = await axios.get(`${url}/users/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        //then saves this data to user
+        const user = userResponse.data;
+        //spreading user.data into a new object and setting the isBanned to the opposite of its current value
+        const updatedUser = { ...user, isBanned: !user.isBanned };
+
+        if (updatedUser.isBanned && updatedUser.isAdmin) {
+          updatedUser.isAdmin = false;
+        }
+        //updated user data is sent back to the server
+        const response = await axios.put(
+          `${url}/users/${userId}`,
+          updatedUser,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        console.log(response);
+        dispatch(usersActions.toggleBanStatus(userId));
+        if (updatedUser.isAdmin) {
+          dispatch(usersActions.toggleAdminStatus(userId));
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
 
-  //   const handleToggleAdmin =
-  //     (userId: string): React.MouseEventHandler<HTMLButtonElement> =>
-  //     (e) => {
-  //       e.preventDefault();
-  //       dispatch(usersActions.toggleAdminStatus(userId));
-  //     };
   const handleToggleAdmin =
     (userId: string): React.MouseEventHandler<HTMLButtonElement> =>
     async (e) => {
       e.preventDefault();
       const token = localStorage.getItem("token");
+
       try {
+        const userResponse = await axios.get(`${url}/users/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const user = userResponse.data;
+
+        // Check if user is banned
+        if (user.isBanned) {
+          alert("Cannot change admin status of a banned user.");
+          return;
+        }
+
+        const updatedUser = { ...user, isAdmin: !user.isAdmin };
+
         const response = await axios.put(
-          `http://localhost:8000/users/${userId}`,
-          { isAdmin: !user.isAdmin },
+          `${url}/users/${userId}`,
+          updatedUser,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        console.log(response);
         dispatch(usersActions.toggleAdminStatus(userId));
       } catch (error) {
         console.error(error);
       }
     };
+
   return (
     <Box style={{ width: "90%", marginInline: "auto" }}>
+      <Typography variant="h5" style={{ paddingBottom: "50px" }}>
+        User information
+      </Typography>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -97,13 +142,24 @@ function Admin() {
                 </TableCell>
                 <TableCell align="right">
                   <Button onClick={handleToggleBan(user._id)}>
-                    {user.isBanned ? "not banned" : "Ban user"}
+                    {user.isBanned ? (
+                      <SlBan style={{ color: "red" }} />
+                    ) : (
+                      <SlBan />
+                    )}
                   </Button>
                 </TableCell>
 
                 <TableCell align="right">
                   <Button onClick={handleToggleAdmin(user._id)}>
-                    {user.isAdmin ? "Admin" : "User"}
+                    {user.isAdmin ? (
+                      <MdOutlineAdminPanelSettings
+                        size={22}
+                        style={{ color: "red" }}
+                      />
+                    ) : (
+                      <MdOutlineAdminPanelSettings size={22} />
+                    )}
                   </Button>
                 </TableCell>
               </TableRow>
@@ -115,4 +171,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default UserManagement;
