@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Table from "@mui/material/Table";
@@ -10,24 +10,58 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
+import Snackbar from "@mui/material/Snackbar";
+import { Alert, Button, TextField } from "@mui/material";
 import "./foodInfo.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
 import { fetchFoodData } from "../../../redux/thunk/food";
+import { IconButton } from "@mui/material";
+import { url } from "./../../../App";
+import axios from "axios";
 
 const FoodInformation = () => {
   const foodList = useSelector((state: RootState) => state.food.food);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchFoodData());
   }, [dispatch, foodList]);
 
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const token = localStorage.getItem("token");
+  const removeFood = (id: string) => {
+    axios
+      .delete(`${url}/food/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          handleClick();
+        }
+      });
+  };
+
   return (
     <div className="food-info-container">
       <h2>Food Recipes Information</h2>
-      <TableContainer component={Paper} sx={{ maxWidth: "85%" }}>
+      <TableContainer component={Paper} sx={{ maxWidth: "90%" }}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
@@ -35,7 +69,7 @@ const FoodInformation = () => {
                 <b>#</b>
               </TableCell>
               <TableCell>
-                <b>Food Item</b>
+                <b>Image</b>
               </TableCell>
               <TableCell>
                 <b>Title</b>
@@ -64,10 +98,14 @@ const FoodInformation = () => {
                   <TableCell>{food.title}</TableCell>
                   <TableCell>{food.description.slice(0, 150)} ...</TableCell>
                   <TableCell>
-                    <EditIcon onClick={() => navigate("/updateFood")} />
+                    <IconButton onClick={() => navigate("/updateFood")}>
+                      <EditIcon />
+                    </IconButton>
                   </TableCell>
                   <TableCell>
-                    <DeleteIcon />
+                    <IconButton onClick={() => removeFood(food._id)}>
+                      <DeleteIcon color="error"/>
+                    </IconButton>
                   </TableCell>
                 </TableRow>
               );
@@ -75,6 +113,11 @@ const FoodInformation = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Product removed successfully!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
