@@ -1,6 +1,5 @@
 import AddFood from "../components/admin/addFood/AddFood";
 import FoodInformation from "../components/admin/foodInformation/FoodInformation";
-import UpdateFood from "../components/admin/updateFood/UpdateFood";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 

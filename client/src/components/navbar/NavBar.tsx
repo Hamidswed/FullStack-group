@@ -6,9 +6,6 @@ import "./NavBar.css";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../redux/store";
 
-import { RootState } from "../../redux/store";
-import { useSelector } from "react-redux";
-
 function NavBar() {
   const user = useSelector((state:RootState)=>state.user.user)
   const isLogin = useSelector((state:RootState)=>state.user.isLogin)
