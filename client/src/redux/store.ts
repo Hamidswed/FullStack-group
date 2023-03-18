@@ -3,6 +3,7 @@ import commentReducer from "./slice/comment";
 import foodReducer from "./slice/food";
 import userReducer from "./slice/user";
 import userListReducer from "./slice/users";
+import favoriteReducer from "./slice/favorite";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     food: foodReducer,
     user: userReducer,
     userList: userListReducer,
+    favorite: favoriteReducer
   },
 });
 

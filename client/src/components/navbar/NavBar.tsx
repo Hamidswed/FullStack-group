@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
 import "./NavBar.css";
 
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+
 function NavBar() {
+  const favState = useSelector((state: RootState) => state.favorite.favorites);
   const LoginBTN = styled(Button)({
     color: "#fff",
     backgroundColor: "black",
@@ -40,7 +44,7 @@ function NavBar() {
       </div>
       <div className="navbar-right">
         <Link to="/favorites">
-          <StyledBadge badgeContent="2" color="error">
+          <StyledBadge badgeContent={favState.length} color="error">
             <IconButton>
               <FavoriteBorderIcon />
             </IconButton>
