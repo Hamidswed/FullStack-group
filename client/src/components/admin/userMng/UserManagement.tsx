@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { AppDispatch, RootState } from "../redux/store";
-import fetchUsers from "../redux/thunk/usersList";
-import { fetchUser } from "../redux/thunk/user";
+import { AppDispatch, RootState } from "../../../redux/store";
+import fetchUsers from "../../../redux/thunk/usersList";
+import { fetchUser } from "../../../redux/thunk/user";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,9 +12,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box, Button } from "@mui/material";
-import { usersActions } from "../redux/slice/usersList";
+import { usersActions } from "../../../redux/slice/usersList";
 
-function Admin() {
+function UserManagement() {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user.user);
   const userId = user._id;
@@ -40,12 +40,6 @@ function Admin() {
       dispatch(usersActions.toggleBanStatus(userId));
     };
 
-  //   const handleToggleAdmin =
-  //     (userId: string): React.MouseEventHandler<HTMLButtonElement> =>
-  //     (e) => {
-  //       e.preventDefault();
-  //       dispatch(usersActions.toggleAdminStatus(userId));
-  //     };
   const handleToggleAdmin =
     (userId: string): React.MouseEventHandler<HTMLButtonElement> =>
     async (e) => {
@@ -115,4 +109,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default UserManagement;

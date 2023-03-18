@@ -14,8 +14,8 @@ import Favorite from "./pages/Favorite";
 import AllRecipes from "./pages/AllRecipes";
 
 import DetailedFood from "./pages/DetailedFood";
-import FoodMng from './pages/FoodMng';
-import Admin from "./pages/Admin";
+import FoodMng from "./pages/FoodMng";
+import UserMng from "./pages/UserMng";
 
 export const url = "http://localhost:8000";
 function App() {
@@ -33,7 +33,7 @@ function App() {
         <Route path="/food-mng" element={<FoodMng />} />
         <Route path="/about" element={<About />} />
         <Route path="/favorites" element={<Favorite />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/user-mng" element={<UserMng />} />
       </Routes>
       <Footer />
     </Box>
