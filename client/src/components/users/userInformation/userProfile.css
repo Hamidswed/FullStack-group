@@ -24,3 +24,9 @@
 .user-profile-btn button{
   width: 100px;
 }
+.user-profile-management{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 20px;
+}

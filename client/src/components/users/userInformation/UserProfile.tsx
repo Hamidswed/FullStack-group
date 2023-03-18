@@ -146,8 +146,12 @@ const UserProfile = () => {
         </Formik>
       </div>
       {user.isAdmin ? (
-        <div>
-          <Button variant="outlined">User list</Button>
+        <div className="user-profile-management">
+          <Button variant="outlined">User management</Button>
+          <Button variant="outlined" onClick={() => navigate("/food-mng")}>
+            Food management
+          </Button>
+          <Button variant="outlined">CMD management</Button>
         </div>
       ) : null}
     </div>

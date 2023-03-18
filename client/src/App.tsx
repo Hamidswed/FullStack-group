@@ -13,6 +13,7 @@ import About from "./pages/About";
 import Favorite from "./pages/Favorite";
 import AllRecipes from "./pages/AllRecipes";
 import DetailedFood from "./pages/DetailedFood";
+import FoodMng from './pages/FoodMng';
 
 export const url = "http://localhost:8000";
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/all-recipes" element={<AllRecipes />} />
         <Route path="/updateFood" element={<UpdateFood />} />
         <Route path="/food/:id" element={<DetailedFood />} />
+        <Route path="/food-mng" element={<FoodMng />} />
         <Route path="/about" element={<About />} />
         <Route path="/favorites" element={<Favorite />} />
       </Routes>
