@@ -9,6 +9,9 @@ import { RootState } from "../../../redux/store";
 import Rating from "@mui/material/Rating";
 import { Button, IconButton } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import "./foodItem.css";
+import { Link } from "react-router-dom";
+
 
 type PropType = {
   food: FoodType;
@@ -47,9 +50,11 @@ const FoodItem = ({ food }: PropType) => {
   return (
     <div className="food-item-container">
       <h3>{food.title}</h3>
-      <div className="food-item-image-fram">
-        <img src={food.image} alt={food.title} />
-      </div>
+      <Link to={`/food/${food._id}`}>
+        <div className="food-item-image-fram">
+          <img src={food.image} alt={food.title} />
+        </div>
+      </Link>
       <div className="food-item-rate-fav">
         <div>
           <Rating

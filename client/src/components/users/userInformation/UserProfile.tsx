@@ -9,6 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./userProfile.css";
+import { userActions } from "./../../../redux/slice/user";
 
 export type InitialUpdateType = {
   firstName: string;
@@ -47,6 +48,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const logOut = () => {
     localStorage.clear();
+    dispatch(userActions.loginHandler(false));
     navigate("/login");
   };
 
@@ -144,9 +146,17 @@ const UserProfile = () => {
         </Formik>
       </div>
       {user.isAdmin ? (
+        <div className="user-profile-management">
+          <Button variant="outlined">User management</Button>
+          <Button variant="outlined" onClick={() => navigate("/food-mng")}>
+            Food management
+          </Button>
+          <Button variant="outlined">CMT management</Button>
+        </div>
         <Link to="/admin">
           <Button variant="outlined">User list</Button>
         </Link>
+
       ) : null}
     </div>
   );
