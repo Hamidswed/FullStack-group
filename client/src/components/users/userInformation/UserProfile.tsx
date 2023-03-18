@@ -151,7 +151,7 @@ const UserProfile = () => {
           <Button variant="outlined" onClick={() => navigate("/food-mng")}>
             Food management
           </Button>
-          <Button variant="outlined">CMD management</Button>
+          <Button variant="outlined">CMT management</Button>
         </div>
       ) : null}
     </div>
