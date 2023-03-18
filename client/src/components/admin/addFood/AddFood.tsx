@@ -48,7 +48,7 @@ const AddFood = () => {
         console.log(res.data, "data");
         if (res.status === 200) {
           handleClick();
-          // resetForm({ values: { title: "", image: "", description: "" } });
+          resetForm({ values: initialValues });
         }
       });
   };
@@ -64,11 +64,11 @@ const AddFood = () => {
         validationSchema={addFoodSchema}
         onSubmit={submitHandler}
       >
-        {({ errors, touched, handleChange }) => {
+        {({ values, errors, touched, handleChange }) => {
           return (
             <Form>
               <div className="form-field">
-                <TextField label="Title" name="title" onChange={handleChange} />
+                <TextField label="Title" name="title" onChange={handleChange} value={values.title}/>
                 {errors.title && touched.title ? (
                   <div className="error-message">{errors.title}</div>
                 ) : null}
@@ -76,6 +76,7 @@ const AddFood = () => {
                   label="Image's Link"
                   name="image"
                   onChange={handleChange}
+                  value={values.image}
                 />
                 {errors.image && touched.image ? (
                   <div className="error-message">{errors.image}</div>
@@ -90,6 +91,7 @@ const AddFood = () => {
                   multiline
                   rows={10}
                   onChange={handleChange}
+                  value={values.description}
                 />
                 {errors.description && touched.description ? (
                   <div className="error-message">{errors.description}</div>
