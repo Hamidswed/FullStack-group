@@ -6,9 +6,13 @@ import "./NavBar.css";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../redux/store";
 
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+
 function NavBar() {
   const user = useSelector((state:RootState)=>state.user.user)
   const isLogin = useSelector((state:RootState)=>state.user.isLogin)
+  const favState = useSelector((state: RootState) => state.favorite.favorites);
   const LoginBTN = styled(Button)({
     color: "#fff",
     backgroundColor: "black",
@@ -44,7 +48,7 @@ function NavBar() {
       </div>
       <div className="navbar-right">
         <Link to="/favorites">
-          <StyledBadge badgeContent="2" color="error">
+          <StyledBadge badgeContent={favState.length} color="error">
             <IconButton>
               <FavoriteBorderIcon />
             </IconButton>

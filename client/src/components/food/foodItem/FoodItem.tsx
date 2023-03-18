@@ -1,14 +1,52 @@
+import { useSelector, useDispatch } from "react-redux";
+
+import "./foodItem.css";
+import { favoriteActions } from "../../../redux/slice/favorite";
 import { FoodType } from "../../../types/foodType";
+import { RootState } from "../../../redux/store";
+
+
 import Rating from "@mui/material/Rating";
 import { Button, IconButton } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "./foodItem.css";
 import { Link } from "react-router-dom";
 
+
 type PropType = {
   food: FoodType;
 };
 const FoodItem = ({ food }: PropType) => {
+  
+  const dispatch = useDispatch();
+  const favState = useSelector((state: RootState) => state.favorite.favorites);
+
+  // Check Favorite
+  let isFav = favState.some(
+    (item) => item.title === food.title
+  );
+  
+  // Add Favorite
+  const addToFavorite = () => {
+    dispatch(favoriteActions.addToFavorite(food));
+  };
+
+  // Remove Favorite
+  const removeFromFavorite = () => {
+    dispatch(favoriteActions.removeFromFavorite(food));
+  };
+
+  // Favorite Handler
+  const favHandler = () => {
+    if (isFav) {
+      removeFromFavorite();
+      isFav = !isFav;
+    } else {
+      addToFavorite();
+      isFav = !isFav;
+    }
+  };
+
   return (
     <div className="food-item-container">
       <h3>{food.title}</h3>
@@ -27,8 +65,8 @@ const FoodItem = ({ food }: PropType) => {
           />
         </div>
         <div>
-          <IconButton>
-            <FavoriteBorderIcon />
+          <IconButton onClick={favHandler} >
+            <FavoriteBorderIcon sx={{ color: isFav ? "red" : "gray" }} />
           </IconButton>
         </div>
       </div>

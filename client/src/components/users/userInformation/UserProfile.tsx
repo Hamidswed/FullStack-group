@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { Button, styled, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./userProfile.css";
 import { userActions } from "./../../../redux/slice/user";
 
@@ -114,7 +114,7 @@ const UserProfile = () => {
                 {isEdit ? (
                   <div className="user-profile-btn">
                     <Button variant="outlined" onClick={() => setIsEdit(false)}>
-                      cancle
+                      cancel
                     </Button>
                     <Button variant="contained" type="submit">
                       Save
@@ -153,6 +153,10 @@ const UserProfile = () => {
           </Button>
           <Button variant="outlined">CMT management</Button>
         </div>
+        <Link to="/admin">
+          <Button variant="outlined">User list</Button>
+        </Link>
+
       ) : null}
     </div>
   );

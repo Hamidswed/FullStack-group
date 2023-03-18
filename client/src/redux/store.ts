@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import commentReducer from "./slice/comment";
 import foodReducer from "./slice/food";
 import userReducer from "./slice/user";
+import favoriteReducer from "./slice/favorite";
 import userListReducer from "./slice/usersList";
 
 const store = configureStore({
@@ -10,6 +11,7 @@ const store = configureStore({
     food: foodReducer,
     user: userReducer,
     userList: userListReducer,
+    favorite: favoriteReducer
   },
 });
 
