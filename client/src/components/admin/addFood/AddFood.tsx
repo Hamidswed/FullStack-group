@@ -58,8 +58,7 @@ const AddFood = () => {
   return (
     <div className="add-food-container">
       <div>
-        <h1>Add delicious recipe detail</h1>
-        <span>It's free and always will be.</span>
+        <h2>Add recipe</h2>
       </div>
       <Formik
         initialValues={initialValues}
