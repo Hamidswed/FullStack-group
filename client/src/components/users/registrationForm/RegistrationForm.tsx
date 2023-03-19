@@ -21,14 +21,9 @@ type InitialValues = {
 
 const RegistrationForm = () => {
   const [open, setOpen] = useState(false);
-  const [showPass, setShowPass] = useState(false);
   const [regClicked, setRegClicked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [userName, setUserName] = useState("");
-
-  const showPassHandler = () => {
-    setShowPass(!showPass);
-  };
 
   const handleClick = () => {
     setOpen(true);
