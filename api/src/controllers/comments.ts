@@ -20,6 +20,20 @@ export const getCommentsByUserIdController = async (
   }
 };
 
+export const getCommentsByFoodIdController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const commentList = await commentServices.getCommentsByFoodId(
+      req.params.id
+    );
+    res.json(commentList);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getAllCommentsController = async (req: Request, res: Response) => {
   try {
     const commentList = await commentServices.getAllComments();
