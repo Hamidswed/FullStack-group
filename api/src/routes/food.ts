@@ -21,6 +21,12 @@ foodRouter.post(
   AdminCheck,
   createFoodController
 );
+foodRouter.post(
+  "/",
+  passport.authenticate("google-id-token", { session: false }),
+  AdminCheck,
+  createFoodController
+);
 foodRouter.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),

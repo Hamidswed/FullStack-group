@@ -31,6 +31,11 @@ userRouter.put(
   passport.authenticate("jwt", { session: false }),
   updateUserByIdController
 );
+userRouter.put(
+  "/:id",
+  passport.authenticate("google-id-token", { session: false }),
+  updateUserByIdController
+);
 userRouter.post(
   "/googleLogIn",
   passport.authenticate("google-id-token", { session: false }),
