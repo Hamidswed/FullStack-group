@@ -32,7 +32,6 @@ function Footer() {
           flexWrap: "wrap",
           justifyContent: "space-between",
           alignItems: "center",
-          paddingLeft: "100px",
           gap: 50,
           paddingBottom: "20px",
           marginBottom: "20px",
@@ -98,8 +97,8 @@ function Footer() {
           </IconButton>
         </Box>
         <Box>
-          <Link to="/">
-            <img className="logo-footer" src={Logo} alt="logo" />
+          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+            <span className="food-blog">Food Blog</span>
           </Link>
         </Box>
         <Box>

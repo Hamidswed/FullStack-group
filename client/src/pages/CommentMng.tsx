@@ -2,7 +2,7 @@ import CmtManagement from "../components/admin/comentMng/CmtManagement";
 
 const CommentMng = () => {
   return (
-    <div>
+    <div className="comment-page">
       <CmtManagement />
     </div>
   );
