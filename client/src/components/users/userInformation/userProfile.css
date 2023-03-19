@@ -1,5 +1,5 @@
 .user-profile-container{
-  width: 40%;
+  min-width: 50%;
   display: flex;
   gap: 40px;
   justify-content: center;

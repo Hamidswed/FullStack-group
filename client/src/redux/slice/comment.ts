@@ -3,9 +3,11 @@ import { CommentType } from "../../types/commentType";
 
 type InitialType = {
   comments: CommentType[];
+  allComments: CommentType[];
 };
 const initialState: InitialType = {
   comments: [],
+  allComments: [],
 };
 
 const commentSlice = createSlice({
@@ -14,6 +16,9 @@ const commentSlice = createSlice({
   reducers: {
     getCommentByFoodId: (state, action) => {
       state.comments = action.payload;
+    },
+    getAllcomments: (state, action) => {
+      state.allComments = action.payload;
     },
   },
 });

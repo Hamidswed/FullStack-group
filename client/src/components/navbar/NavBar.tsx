@@ -55,7 +55,9 @@ function NavBar() {
           {isLogin ? "Welcome to Food Blog" : "Register"}
         </Link>
         <Link to={isLogin ? "/user" : "/login"}>
-          <LoginBTN>{isLogin ? user.firstName : "Log In"}</LoginBTN>
+          <StyledBadge badgeContent={user.isAdmin && isLogin ? "A" : null} color="info">
+            <LoginBTN>{isLogin ? user.firstName : "Log In"}</LoginBTN>
+          </StyledBadge>
         </Link>
       </div>
     </div>
