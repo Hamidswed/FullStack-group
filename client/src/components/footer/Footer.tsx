@@ -3,14 +3,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import {
-  Box,
-  IconButton,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-} from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import "./footer.css";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
@@ -54,7 +47,9 @@ function Footer() {
             alignItems: "center",
           }}
         >
-          <Typography variant="h5">FIND US</Typography>
+          <Typography variant="h5" className="slogan">
+            FIND US
+          </Typography>
 
           <IconButton
             size="large"
@@ -108,8 +103,12 @@ function Footer() {
           </Link>
         </Box>
         <Box>
-          <Typography variant="h5">Simple Recipes </Typography>
-          <Typography variant="h5">That Make You Feel Good</Typography>
+          <Typography variant="h5" className="slogan">
+            Simple Recipes{" "}
+          </Typography>
+          <Typography variant="h5" className="slogan">
+            That Make You Feel Good
+          </Typography>
         </Box>
       </Box>
 
@@ -143,32 +142,6 @@ function Footer() {
             Log In
           </Link>
         </Box>
-        {/* <Box className="footer-column">
-          <Typography>Column2</Typography>
-          <List>
-            <ListItem>
-              <ListItemText>Contact</ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>Privacy Policy</ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>Terms of use</ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>Our team</ListItemText>
-            </ListItem>
-          </List>
-        </Box>
-        <Box className="footer-column">
-          <Typography>Column3</Typography>
-          <ul>
-            <li>test1</li>
-            <li>test1</li>
-            <li>test1</li>
-            <li>test1</li>
-          </ul>
-        </Box> */}
       </Box>
       <Box
         style={{ paddingTop: "40px", paddingBottom: "10px" }}
