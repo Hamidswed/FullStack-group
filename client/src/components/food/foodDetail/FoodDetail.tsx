@@ -110,6 +110,20 @@ const FoodDetail = ({ food }: PropType) => {
         }
       });
   };
+  // const getComments = () => {
+  //   axios
+  //     .get(`${url}/comments/${food._id}`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((res) => {
+  //       const comments = res.data;
+  //       console.log(comments);
+  //       // update the UI to display the comments
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
 
   return (
     <>

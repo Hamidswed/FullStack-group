@@ -15,6 +15,9 @@ const commentSlice = createSlice({
     getCommentByFoodId: (state, action) => {
       state.comments = action.payload;
     },
+    getAllComments: (state, action) => {
+      state.comments = action.payload;
+    },
   },
 });
 
