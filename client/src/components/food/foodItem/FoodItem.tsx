@@ -88,7 +88,10 @@ const FoodItem = ({ food }: PropType) => {
         </div>
       </div>
       <p>{food.description.slice(0, 100)}...</p>
-      <Button>Read more</Button>
+      <Link to={`/food/${food._id}`}>
+        <Button>Read more</Button>
+      </Link>
+
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert
           onClose={handleClose}

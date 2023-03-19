@@ -18,6 +18,9 @@
 .food-item-container p{
   text-align: left;
 }
+.food-item-container a{
+  text-decoration: none;
+}
 .food-item-image-fram{
   width: 100%;
 }

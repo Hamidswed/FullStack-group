@@ -23,9 +23,9 @@ const FavoriteList = () => {
   );
 
   return (
-    <div className="favorite-list">
+    <div>
       {favoriteList.length === 0 ? (
-        <div className="cart-list-warning">
+        <div>
           <Tooltip title="Back to products">
             <Link to="/products">
               <IconButton>
@@ -56,13 +56,7 @@ const FavoriteList = () => {
                 </TableRow>
               </TableHead>
               {favoriteList.map((item, index) => {
-                return (
-                  <FavoriteItem
-                    key={item._id}
-                    favorite={item}
-                    row={index + 1}
-                  />
-                );
+                return <FavoriteItem key={item._id} favorite={item} />;
               })}
             </Table>
           </TableContainer>
