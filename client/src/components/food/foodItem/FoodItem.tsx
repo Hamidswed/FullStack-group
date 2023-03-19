@@ -9,7 +9,6 @@ import { RootState } from "../../../redux/store";
 import Rating from "@mui/material/Rating";
 import { Button, IconButton } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import "./foodItem.css";
 import { Link } from "react-router-dom";
 
 
