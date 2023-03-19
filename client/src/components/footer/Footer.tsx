@@ -3,56 +3,57 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import { IconButton } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import "./footer.css";
+import { Link } from "react-router-dom";
+import Logo from "../../assets/logo.svg";
+
+const linkStyle = {
+  margin: "1rem",
+  textDecoration: "none",
+  color: "black",
+};
 
 function Footer() {
   return (
-    <div className="footer-container">
-      <section className="footer-section1">
-        <div className="footer-column">
-          <h5>Column1</h5>
-          <ul>
-            <li>test1</li>
-            <li>test1</li>
-            <li>test1</li>
-            <li>test1</li>
-          </ul>
-        </div>
-        <div className="footer-column">
-          <h5>Column2</h5>
-          <ul>
-            <li>test1</li>
-            <li>test1</li>
-            <li>test1</li>
-            <li>test1</li>
-          </ul>
-        </div>
-        <div className="footer-column">
-          <h5>Column3</h5>
-          <ul>
-            <li>test1</li>
-            <li>test1</li>
-            <li>test1</li>
-            <li>test1</li>
-          </ul>
-        </div>
-        <div className="footer-column">
-          <h5>Column4</h5>
-          <ul>
-            <li>test1</li>
-            <li>test1</li>
-            <li>test1</li>
-            <li>test1</li>
-          </ul>
-        </div>
-      </section>
-      <section className="footer-section2">
-        <div className="footer-copyright">
-          Copyright &#169; Food Blog | Created
-          by Alina . Irfan . Hamid
-        </div>
-        <div className="footer-icon">
+    <Box
+      style={{
+        paddingTop: "50px",
+        width: "90%",
+        marginInline: "auto",
+      }}
+    >
+      <Box
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "center",
+          paddingLeft: "100px",
+          gap: 50,
+          paddingBottom: "20px",
+          marginBottom: "20px",
+          borderBottom: "1px solid black",
+        }}
+        className="footer-icon"
+      >
+        <Box
+          style={{
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h5">FIND US</Typography>
+
           <IconButton
             size="large"
             edge="end"
@@ -98,9 +99,79 @@ function Footer() {
           >
             <LinkedInIcon />
           </IconButton>
-        </div>
-      </section>
-    </div>
+        </Box>
+        <Box>
+          <Link to="/">
+            <img className="logo-footer" src={Logo} alt="logo" />
+          </Link>
+        </Box>
+        <Box>
+          <Typography variant="h5">Simple Recipes </Typography>
+          <Typography variant="h5">That Make You Feel Good</Typography>
+        </Box>
+      </Box>
+
+      <Box
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+        }}
+        className="footer-section1"
+      >
+        <Box className="footer-column">
+          <Typography variant="h5">ABOUT</Typography>
+
+          <Link to="/about" style={linkStyle}>
+            About Us
+          </Link>
+
+          <Link to="/all-recipes" style={linkStyle}>
+            All Recipes
+          </Link>
+
+          <Link to="/registration" style={linkStyle}>
+            Register
+          </Link>
+
+          <Link to="/login" style={linkStyle}>
+            Log In
+          </Link>
+        </Box>
+        {/* <Box className="footer-column">
+          <Typography>Column2</Typography>
+          <List>
+            <ListItem>
+              <ListItemText>Contact</ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>Privacy Policy</ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>Terms of use</ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>Our team</ListItemText>
+            </ListItem>
+          </List>
+        </Box>
+        <Box className="footer-column">
+          <Typography>Column3</Typography>
+          <ul>
+            <li>test1</li>
+            <li>test1</li>
+            <li>test1</li>
+            <li>test1</li>
+          </ul>
+        </Box> */}
+      </Box>
+      <Box style={{ paddingBlock: "20px" }} className="footer-section2">
+        <Box className="footer-copyright">
+          Copyright &#169; Food Blog | Created by Alina . Irfan . Hamid
+        </Box>
+      </Box>
+    </Box>
   );
 }
 
