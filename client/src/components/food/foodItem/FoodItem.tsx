@@ -9,7 +9,6 @@ import Rating from "@mui/material/Rating";
 import Snackbar from "@mui/material/Snackbar";
 import { Alert, Button, IconButton } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import "./foodItem.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
