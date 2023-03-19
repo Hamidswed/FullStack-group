@@ -70,6 +70,7 @@ const AddFood = () => {
             <Form className="add-food-form">
               <div>
                 <TextField
+                  className="add-form-text"
                   label="Title"
                   name="title"
                   onChange={handleChange}
@@ -81,6 +82,7 @@ const AddFood = () => {
               </div>
               <div>
                 <TextField
+                  className="add-form-text"
                   label="Image's Link"
                   name="image"
                   onChange={handleChange}
@@ -92,7 +94,7 @@ const AddFood = () => {
               </div>
               <div>
                 <TextField
-                  className="textBox"
+                  className="add-form-text"
                   label="Description"
                   name="description"
                   multiline

@@ -2,13 +2,14 @@
 
 import { Router } from "express";
 import passport from "passport";
-import AdminCheck from "../middlewares/adminCheck"
+import AdminCheck from "../middlewares/adminCheck";
 
 import {
   getCommentsByUserIdController,
   getAllCommentsController,
   createCommentController,
   deleteCommentByIdController,
+  getCommentsByFoodIdController,
 } from "../controllers/comments";
 
 const commentRouter = Router();
@@ -19,6 +20,9 @@ commentRouter.get(
   passport.authenticate("jwt", { session: false }),
   getCommentsByUserIdController
 );
+
+commentRouter.get("/:foodId", getCommentsByFoodIdController);
+
 commentRouter.get(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -26,7 +30,7 @@ commentRouter.get(
   getAllCommentsController
 );
 commentRouter.post(
-  "/:userId",
+  "/:foodId",
   passport.authenticate("jwt", { session: false }),
   createCommentController
 );
@@ -36,6 +40,5 @@ commentRouter.delete(
   AdminCheck,
   deleteCommentByIdController
 );
-
 
 export default commentRouter;

@@ -21,14 +21,9 @@ type InitialValues = {
 
 const RegistrationForm = () => {
   const [open, setOpen] = useState(false);
-  const [showPass, setShowPass] = useState(false);
   const [regClicked, setRegClicked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [userName, setUserName] = useState("");
-
-  const showPassHandler = () => {
-    setShowPass(!showPass);
-  };
 
   const handleClick = () => {
     setOpen(true);
@@ -140,7 +135,11 @@ const RegistrationForm = () => {
               </div>
 
               <div>
-                <Button variant="contained" type="submit" sx={{mt:5}}>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{ mt: 5, width: "100px" }}
+                >
                   {regClicked && !openModal ? (
                     <span>
                       <i className="fas fa-spinner fa-spin fa-xl" />

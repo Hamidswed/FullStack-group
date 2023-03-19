@@ -9,9 +9,9 @@ function Login() {
       <Box style={{ paddingBlock: "50px" }}>
         <LoginForm />
       </Box>
-      <Box style={{ paddingBlock: "50px" }}>
+      <div className="login-page-google">
         <GoogleLogIn />
-      </Box>
+      </div>
     </div>
   );
 }

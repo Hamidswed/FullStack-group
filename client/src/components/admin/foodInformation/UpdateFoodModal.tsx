@@ -3,9 +3,6 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
 import UpdateFood from "../updateFood/UpdateFood";
 import { FoodType } from "../../../types/foodType";
 
@@ -23,18 +20,18 @@ const style = {
 
 type PropType = {
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   foodToModal:FoodType | undefined
 };
 
-export default function UpdateFoodModal({ open, setOpen,foodToModal }: PropType) {
+export default function UpdateFoodModal({ open, setOpenModal,foodToModal }: PropType) {
   return (
     <div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={() => setOpenModal(false)}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -45,7 +42,7 @@ export default function UpdateFoodModal({ open, setOpen,foodToModal }: PropType)
       >
         <Fade in={open}>
           <Box sx={style}>
-            <UpdateFood foodToUpdate={foodToModal} setOpen={setOpen}/>
+            <UpdateFood foodToUpdate={foodToModal} setOpenModal={setOpenModal}/>
           </Box>
         </Fade>
       </Modal>
