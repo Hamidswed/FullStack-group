@@ -17,6 +17,7 @@
 }
 .food-item-container p{
   text-align: left;
+  line-height: 25px;
 }
 .food-item-container a{
   text-decoration: none;
