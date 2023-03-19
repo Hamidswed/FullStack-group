@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { Button, styled, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./userProfile.css";
 import { userActions } from "./../../../redux/slice/user";
 
@@ -147,7 +147,7 @@ const UserProfile = () => {
       </div>
       {user.isAdmin ? (
         <div className="user-profile-management">
-          <Button variant="outlined" onClick={() => navigate("/admin")}>
+          <Button variant="outlined" onClick={() => navigate("/user-mng")}>
             User management
           </Button>
           <Button variant="outlined" onClick={() => navigate("/food-mng")}>
