@@ -26,7 +26,7 @@ commentRouter.get(
   getAllCommentsController
 );
 commentRouter.post(
-  "/:userId",
+  "/:foodId",
   passport.authenticate("jwt", { session: false }),
   createCommentController
 );

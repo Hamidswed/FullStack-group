@@ -5,7 +5,6 @@ import User from "./User";
 export type CommentDocument = Document & {
   userId: string;
   foodId: string;
-  title: string;
   message: string;
   date: Date;
   rate: number;
@@ -20,10 +19,6 @@ const CommentSchema = new mongoose.Schema({
   foodId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: Food,
-  },
-  title: {
-    type: String,
-    required: true,
   },
   message: {
     type: String,
