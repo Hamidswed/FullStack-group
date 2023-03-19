@@ -8,7 +8,8 @@
 .login-page,
 .regiter-page,
 .user-info-page,
-.food-mng-page-container {
+.food-mng-page-container,
+.comment-page {
   min-height: 100vh;
 }
 

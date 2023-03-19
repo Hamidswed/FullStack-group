@@ -1,10 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-
 .logo-footer {
   width: 100px;
   height: 100px;
 }
 
-.slogan {
-  font-family: "Montserrat", sans-serif;
+.food-blog {
+  font-size: 50px;
+  font-family: 'Dancing Script';
 }
