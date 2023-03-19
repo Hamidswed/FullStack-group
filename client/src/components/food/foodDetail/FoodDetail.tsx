@@ -51,18 +51,19 @@ const initialValues: InitialType = {
 // }
 
 const FoodDetail = ({ food }: PropType) => {
-const user = useSelector((state: RootState) => state.user.user);
+  const user = useSelector((state: RootState) => state.user.user);
 
   // Function Call on Submit
   const token = localStorage.getItem("token");
-  const submitHandler = (values:InitialType, { resetForm }: any) => {
+  // rome-ignore lint/suspicious/noExplicitAny: <explanation>
+  const submitHandler = (values: InitialType, { resetForm }: any) => {
     const userComment = {
-      userId: user._id, 
-      foodId: food._id, 
-      message: values.description
-    }
+      userId: user._id,
+      message: values.description,
+    };
+    console.log(userComment, "user comment");
     axios
-      .post(`${url}/comments`, userComment, {
+      .post(`${url}/comments/${food._id}`, userComment, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -162,8 +163,7 @@ const user = useSelector((state: RootState) => state.user.user);
 
 export default FoodDetail;
 
-{
-  /* <div className="food-detail">
+/* <div className="food-detail">
       <div>
       <h1>Crispy Baked Chicken Thighs</h1>
       <Card sx={{ maxWidth: 800, ml: 50 }}>
@@ -205,4 +205,3 @@ export default FoodDetail;
       </Stack>
       </div>
       </div> */
-}
