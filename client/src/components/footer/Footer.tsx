@@ -19,6 +19,8 @@ const linkStyle = {
   margin: "1rem",
   textDecoration: "none",
   color: "black",
+  fontSize: "20px",
+  marginBlock: "20px",
 };
 
 function Footer() {
@@ -121,7 +123,9 @@ function Footer() {
         className="footer-section1"
       >
         <Box className="footer-column">
-          <Typography variant="h5">ABOUT</Typography>
+          <Typography style={{ paddingBlock: "20px" }} variant="h5">
+            ABOUT
+          </Typography>
 
           <Link to="/about" style={linkStyle}>
             About Us
@@ -166,7 +170,10 @@ function Footer() {
           </ul>
         </Box> */}
       </Box>
-      <Box style={{ paddingBlock: "20px" }} className="footer-section2">
+      <Box
+        style={{ paddingTop: "40px", paddingBottom: "10px" }}
+        className="footer-section2"
+      >
         <Box className="footer-copyright">
           Copyright &#169; Food Blog | Created by Alina . Irfan . Hamid
         </Box>
