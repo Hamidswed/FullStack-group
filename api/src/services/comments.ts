@@ -12,6 +12,12 @@ const getCommentsByUserId = async (
   return Comment.find({ userId: userIdRequest }).populate("userId");
 };
 
+const getCommentsByFoodId = async (
+  foodId: string
+): Promise<CommentDocument[]> => {
+  return Comment.find({ foodId: foodId });
+};
+
 const getAllComments = async (): Promise<CommentDocument[]> => {
   return Comment.find();
 };
@@ -28,4 +34,5 @@ export default {
   getCommentsByUserId,
   getAllComments,
   deleteCommentById,
+  getCommentsByFoodId,
 };

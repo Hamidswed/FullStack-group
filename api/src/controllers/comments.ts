@@ -20,6 +20,20 @@ export const getCommentsByUserIdController = async (
   }
 };
 
+export const getCommentsByFoodIdController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const commentList = await commentServices.getCommentsByFoodId(
+      req.params.id
+    );
+    res.json(commentList);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getAllCommentsController = async (req: Request, res: Response) => {
   try {
     const commentList = await commentServices.getAllComments();
@@ -34,11 +48,10 @@ export const createCommentController = async (req: Request, res: Response) => {
   try {
     // We'll get comment here from FrontEnd | Client
     // comment function|Collection|table import from Model
-    const { foodId, title, message } = req.body;
+    const { userId, message } = req.body;
     const newComment = new Comment({
-      userId: req.params.userId,
-      foodId: foodId,
-      title: title,
+      userId: userId,
+      foodId: req.params.foodId,
       message: message,
     });
 

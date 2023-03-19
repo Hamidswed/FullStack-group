@@ -25,3 +25,17 @@
 .food-mng-page{
   display: flex;
 }
+.favorite-page{
+  padding: 0 150px;
+}
+.login-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-page-google{
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import FormSchema from "../loginSchema/formSchema";
 import Snackbar from "@mui/material/Snackbar";
-import { Alert, Button, TextField } from "@mui/material";
-
+import { Alert, Button, IconButton, TextField } from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
@@ -22,12 +23,15 @@ export type InitialTypes = {
 
 const LoginForm = () => {
   const [open, setOpen] = useState(false);
+  const [showPass, setShowPass] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const isLogin = useSelector((state: RootState) => state.user.isLogin);
   const error = useSelector((state: RootState) => state.user.error);
   const navigate = useNavigate();
   
-  
+  const showPassHandler = () => {
+    setShowPass(!showPass);
+  };
   const handleClick = () => {
     setOpen(true);
   };
@@ -105,9 +109,20 @@ const LoginForm = () => {
                   className="textBox"
                   label="Password"
                   name="password"
-                  type="password"
+                  type={showPass ? "text" : "password"}
                   onChange={handleChange}
                 />
+                <span className="visibility">
+                  {showPass ? (
+                    <IconButton onClick={showPassHandler}>
+                      <VisibilityOff />
+                    </IconButton>
+                  ) : (
+                    <IconButton onClick={showPassHandler}>
+                      <Visibility />
+                    </IconButton>
+                  )}
+                </span>
                 {errors.password && touched.password ? (
                   <p className="error-message">{errors.password}</p>
                 ) : null}

@@ -10,11 +10,13 @@ const favouriteItems =
 // Initial Type
 type InitialType = {
   favorites: FoodType[];
+  alert: string;
 };
 
 // Initial Stage
 const initialState: InitialType = {
   favorites: favouriteItems,
+  alert: "",
 };
 
 // Create Slice
@@ -27,7 +29,7 @@ const favoriteSlice = createSlice({
       const index = state.favorites.findIndex(
         (item) => item._id === action.payload._id
       );
-      
+
       if (index === -1) {
         state.favorites.push(action.payload);
         localStorage.setItem(
@@ -47,6 +49,9 @@ const favoriteSlice = createSlice({
         "favorites",
         JSON.stringify(state.favorites.map((item) => item))
       );
+    },
+    showAlert: (state, action) => {
+      state.alert = action.payload;
     },
   },
 });

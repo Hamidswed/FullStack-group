@@ -123,7 +123,7 @@ const FoodInformation = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <UpdateFoodModal open={openModal} setOpen={setOpenModal} foodToModal={foodToModal}/>
+      <UpdateFoodModal open={openModal} setOpenModal={setOpenModal} foodToModal={foodToModal}/>
       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
           Product removed successfully!

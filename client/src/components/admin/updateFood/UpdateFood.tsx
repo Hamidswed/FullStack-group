@@ -1,4 +1,3 @@
-import React from "react";
 import updateFoodSchema from "./updateFoodSchema";
 
 import TextField from "@mui/material/TextField";
@@ -19,10 +18,10 @@ type InitialValues = {
 
 type PropType = {
   foodToUpdate: FoodType | undefined;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const UpdateFood = ({ foodToUpdate, setOpen }: PropType) => {
+const UpdateFood = ({ foodToUpdate, setOpenModal }: PropType) => {
   // Initial Values
   const initialValues: InitialValues = {
     title: "",
@@ -38,7 +37,9 @@ const UpdateFood = ({ foodToUpdate, setOpen }: PropType) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        if (res.status === 200) setOpen(false);
+        if (res.status === 200){
+          setOpenModal(false);
+        } 
       });
   };
 
