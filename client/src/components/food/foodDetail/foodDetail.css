@@ -22,13 +22,24 @@
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 3;
+    text-align: left;
+    margin-left: 20px;
+  }
+
+  .food-title h1{
+    margin-bottom: 20px;
   }
 
   .food-txtfields{
+    margin-top: 20px;
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 3;
     grid-row-end: 4;
+  }
+
+  .food-txtfields h4{
+    margin-bottom: 10px;
   }
 
   .food-comments {
