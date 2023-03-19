@@ -12,7 +12,7 @@ const commentSlice = createSlice({
   name: "comment",
   initialState,
   reducers: {
-    getCommentByUserId: (state, action) => {
+    getCommentByFoodId: (state, action) => {
       state.comments = action.payload;
     },
   },
