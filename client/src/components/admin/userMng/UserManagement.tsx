@@ -115,32 +115,34 @@ function UserManagement() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
+            <TableCell>#</TableCell>
               <TableCell>FIRST NAME</TableCell>
-              <TableCell align="right">LAST NAME</TableCell>
-              <TableCell align="right">EMAIL</TableCell>
-              <TableCell align="right">ROLE</TableCell>
+              <TableCell align="left">LAST NAME</TableCell>
+              <TableCell align="left">EMAIL</TableCell>
+              <TableCell align="left">ROLE</TableCell>
               {/* ROLE - USER OD ADMIN */}
-              <TableCell align="right">STATUS</TableCell>
+              <TableCell align="left">STATUS</TableCell>
               {/* STATUS - BANNED OR NOT*/}
-              <TableCell align="right">SPECIAL</TableCell>
+              <TableCell align="left">SPECIAL</TableCell>
               {/* SPECIAL - CREATE ADMIN */}
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.map((user) => (
+            {users.map((user,index) => (
               <TableRow
                 key={user._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell component="th" scope="row">
                   {user.firstName}
                 </TableCell>
-                <TableCell align="right">{user.lastName}</TableCell>
-                <TableCell align="right">{user.email}</TableCell>
-                <TableCell align="right">
+                <TableCell align="left">{user.lastName}</TableCell>
+                <TableCell align="left">{user.email}</TableCell>
+                <TableCell align="left">
                   {user.isAdmin ? "Admin" : "User"}
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="left">
                   <Button onClick={handleToggleBan(user._id)}>
                     {user.isBanned ? (
                       <SlBan style={{ color: "red" }} />
@@ -150,7 +152,7 @@ function UserManagement() {
                   </Button>
                 </TableCell>
 
-                <TableCell align="right">
+                <TableCell align="left">
                   <Button onClick={handleToggleAdmin(user._id)}>
                     {user.isAdmin ? (
                       <MdOutlineAdminPanelSettings
