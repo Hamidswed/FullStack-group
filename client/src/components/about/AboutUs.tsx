@@ -44,13 +44,15 @@ const AboutUs = () => {
             <CardMedia
               component="img"
               height="400"
-              image={"https://avatars.githubusercontent.com/u/71669291?v=4"}
+              image={
+                "https://www.samoteev.dev/static/media/bg88.9856eb521295a5269673.png"
+              }
               alt={"Recipe Image"}
             />
           </CardActionArea>
         </Card>
         <Typography gutterBottom variant="h4" component="div">
-          {"Hamid Reza Delshad"}
+          {"Alina Samoteev"}
         </Typography>
         <Typography gutterBottom variant="h6" component="div">
           Current Status: {"Full Stack Developer"}
@@ -62,7 +64,7 @@ const AboutUs = () => {
           style={{ textAlign: "justify" }}
         >
           {
-            "I am Alina, My dmain is Front-end development based in Stockholm. I'm learning new things about backend to become a full stack developer at Integrify Academy."
+            "I am a Frontend developer with 2+ years of hands-on experience in frontend development, building web apps with Javascript, ReactJs, Typescript and other stacks. I make the concept, build from scratch and maintain the web apps by using the latest techniques.I have a genuine interest in new technologies and enjoy exploring new areas, always putting the focus on the user experience. "
           }
         </Typography>
       </div>
@@ -72,7 +74,9 @@ const AboutUs = () => {
             <CardMedia
               component="img"
               height="400"
-              image={"https://icons.iconarchive.com/icons/custom-icon-design/pretty-office-2/256/man-icon.png"}
+              image={
+                "https://icons.iconarchive.com/icons/custom-icon-design/pretty-office-2/256/man-icon.png"
+              }
               alt={"Recipe Image"}
             />
           </CardActionArea>
