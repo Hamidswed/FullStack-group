@@ -16,7 +16,7 @@ const commentRouter = Router();
 
 // Call Express Methods for comments Collection (DB) by using commentRouter
 commentRouter.get(
-  "/:userId",
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   getCommentsByUserIdController
 );

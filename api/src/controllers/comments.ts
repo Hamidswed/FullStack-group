@@ -26,7 +26,7 @@ export const getCommentsByFoodIdController = async (
 ) => {
   try {
     const commentList = await commentServices.getCommentsByFoodId(
-      req.params.id
+      req.params.foodId
     );
     res.json(commentList);
   } catch (error) {
