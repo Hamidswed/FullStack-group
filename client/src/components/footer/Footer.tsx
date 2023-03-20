@@ -6,7 +6,6 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import { Box, IconButton, Typography } from "@mui/material";
 import "./footer.css";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo.svg";
 
 const linkStyle = {
   margin: "1rem",
@@ -23,6 +22,7 @@ function Footer() {
         paddingTop: "50px",
         width: "90%",
         marginInline: "auto",
+        marginTop:"70px"
       }}
     >
       <Box
